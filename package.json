@@ -11,6 +11,9 @@
   "scripts": {
     "dev": "pnpm --filter @miga/shared build && pnpm --recursive --parallel dev",
     "build": "pnpm --recursive build",
+    "test": "pnpm --filter @miga/shared build && pnpm --filter @miga/api exec prisma generate && vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "pnpm --filter @miga/shared build && pnpm --filter @miga/api exec prisma generate && vitest run --coverage",
     "lint": "eslint .",
     "typecheck": "pnpm --filter @miga/shared build && pnpm --recursive typecheck",
     "format": "prettier --write .",
@@ -18,12 +21,14 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
+    "@vitest/coverage-v8": "5.0.5",
     "eslint": "10.14.0",
     "eslint-plugin-react-hooks": "7.1.1",
     "eslint-plugin-react-refresh": "0.5.7",
     "globals": "17.14.0",
     "prettier": "3.9.10",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.72.1"
+    "typescript-eslint": "8.72.1",
+    "vitest": "5.0.5"
   }
 }

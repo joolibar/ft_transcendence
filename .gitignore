@@ -1,8 +1,9 @@
 # Dependencies
 node_modules/
 
-# Builds
+# Builds and reports
 dist/
+coverage/
 apps/api/src/generated/
 
 # Environment — never commit real secrets

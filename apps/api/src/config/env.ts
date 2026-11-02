@@ -10,11 +10,19 @@ const envSchema = z.object({
 
 export type Env = z.infer<typeof envSchema>;
 
-export function loadEnv(): Env {
-  const result = envSchema.safeParse(process.env);
+export function parseEnv(source: NodeJS.ProcessEnv): Env {
+  const result = envSchema.safeParse(source);
   if (!result.success) {
-    console.error('Invalid environment variables:', z.prettifyError(result.error));
-    process.exit(1);
+    throw new Error(`Invalid environment variables:\n${z.prettifyError(result.error)}`);
   }
   return result.data;
+}
+
+export function loadEnv(): Env {
+  try {
+    return parseEnv(process.env);
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : error);
+    process.exit(1);
+  }
 }

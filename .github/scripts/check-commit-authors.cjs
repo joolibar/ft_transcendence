@@ -15,7 +15,7 @@ function isBot(user) {
   return user?.type === 'Bot' || /\[bot\]$/i.test(user?.login ?? '');
 }
 
-module.exports = async ({ github, context, core }) => {
+async function checkCommitAuthors({ github, context, core }) {
   const pr = context.payload.pull_request;
   const problems = [];
 
@@ -56,4 +56,6 @@ module.exports = async ({ github, context, core }) => {
   } else {
     core.info(`All ${commits.length} commit(s) are authored by team members.`);
   }
-};
+}
+
+module.exports = { checkCommitAuthors, aiAttribution, isBot };
