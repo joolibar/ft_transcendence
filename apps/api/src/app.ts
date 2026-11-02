@@ -15,7 +15,12 @@ function loggerOptions(nodeEnv: Env['NODE_ENV']) {
 }
 
 export async function buildApp(env: Env) {
-  const app = Fastify({ logger: loggerOptions(env.NODE_ENV) });
+  const app = Fastify({
+    logger: loggerOptions(env.NODE_ENV),
+    // nginx sits in front of the API: trust its X-Forwarded-* headers so
+    // request.ip and request.protocol describe the real client.
+    trustProxy: true,
+  });
 
   await app.register(helmet);
   await app.register(sensible);

@@ -24,7 +24,20 @@
    └────────────────────────────────┘
 ```
 
-All three are defined in [`docker-compose.yml`](../docker-compose.yml). In local development (`pnpm dev`) Vite serves the web app on port 5173 and forwards `/api` to the API on port 3000.
+All three are defined in [`docker-compose.yml`](../docker-compose.yml). They start in order, each one waiting until the previous is healthy: `db` (accepts connections) → `api` (answers `/api/health`) → `web`.
+
+In local development, `make db` starts only the database and publishes it on `localhost:5432` through [`docker-compose.dev.yml`](../docker-compose.dev.yml). Then `pnpm dev` runs the API on port 3000 and Vite serves the web app on port 5173, forwarding `/api` to the API.
+
+## Security at the edges
+
+| Measure                             | Where                                                                                                                             |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| HTTPS only, TLS 1.2+                | nginx is the only published port ([`nginx.conf`](../infra/nginx/nginx.conf))                                                      |
+| Security headers on the web app     | [`security-headers.conf`](../infra/nginx/security-headers.conf): HSTS, no sniffing, no framing, referrer and permissions policies |
+| Security headers on the API         | `@fastify/helmet` in [`app.ts`](../apps/api/src/app.ts)                                                                           |
+| Database not reachable from outside | `db` publishes no port in `docker-compose.yml`                                                                                    |
+| Real client IP behind the proxy     | Fastify `trustProxy`, using nginx's `X-Forwarded-*` headers                                                                       |
+| Secrets out of Git                  | `.env` is ignored; `.env.example` documents every variable                                                                        |
 
 ## Repository layout
 

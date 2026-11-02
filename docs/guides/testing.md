@@ -13,10 +13,10 @@ Every change that adds or modifies behaviour comes with tests. CI runs all of th
 
 ## Running tests
 
-The API tests need PostgreSQL. Start it once:
+The API tests need PostgreSQL. Start it once (it stays running in the background):
 
 ```bash
-docker compose up -d db
+make db
 ```
 
 Then, from the repository root:
