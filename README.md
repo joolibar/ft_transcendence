@@ -110,21 +110,51 @@ _To be completed as features are implemented, with the team member(s) responsibl
 
 ## Modules
 
-_Planned selection, to be confirmed by the team. Major = 2 points, Minor = 1 point. Minimum required: 14._
+_Planned selection from the product brief, to be confirmed by the team. Who works on each module will be added once tasks are assigned._
 
-| Category        | Module                                        | Type  | Points | Team member(s) |
-| --------------- | --------------------------------------------- | ----- | ------ | -------------- |
-| Web             | Framework for both frontend and backend       | Major | 2      |                |
-| Web             | Users interact with other users               | Major | 2      |                |
-| Web             | Public API with secured API key               | Major | 2      |                |
-| User Management | Standard user management and authentication   | Major | 2      |                |
-| AI              | Recommendation system using machine learning  | Major | 2      |                |
-| AI              | LLM system interface                          | Major | 2      |                |
-| User Management | Remote authentication with OAuth 2.0          | Minor | 1      |                |
-| Web             | Progressive Web App                           | Minor | 1      |                |
-| Data            | GDPR compliance features                      | Minor | 1      |                |
-| AI              | Sentiment analysis for user-generated content | Minor | 1      |                |
-| **Total**       |                                               |       | **16** |                |
+**Subject rules:** 14 points are required; each Major is worth 2 points and each Minor 1. Bonus points only count once the 14 mandatory points are validated, up to 5 extra. Every module must be fully working, add real value to the product and be justified here.
+
+### Core — 14 points
+
+| Category        | Module                                            | Type  | Points | What covers it in Miga                                 |
+| --------------- | ------------------------------------------------- | ----- | ------ | ------------------------------------------------------ |
+| Web             | Use a framework for both the frontend and backend | Major | 2      | React and Fastify across the whole app                 |
+| User Management | Standard user management and authentication       | Major | 2      | Profiles, avatars, friends and online status           |
+| Web             | Allow users to interact with other users          | Major | 2      | Group plan chat, direct messages, profiles and friends |
+| Web             | Real-time features using WebSockets               | Major | 2      | Group voting, chat and live updates                    |
+| AI              | Recommendation system using machine learning      | Major | 2      | Place suggestions for a group and "Surprise me"        |
+| AI              | Complete LLM system interface                     | Major | 2      | Streamed explanation of every suggestion               |
+| Web             | Use an ORM for the database                       | Minor | 1      | Prisma                                                 |
+| User Management | Remote authentication with OAuth 2.0              | Minor | 1      | Sign in with Google and with 42                        |
+
+### Bonus — 10 points planned
+
+| Category                               | Module                                               | Type  | Points | What covers it in Miga                              |
+| -------------------------------------- | ---------------------------------------------------- | ----- | ------ | --------------------------------------------------- |
+| Accessibility and Internationalization | Complete accessibility compliance (WCAG 2.1 AA)      | Major | 2      | The whole interface                                 |
+| Web                                    | Public API with a secured API key and rate limiting  | Major | 2      | Our own API for places, collections and group plans |
+| Accessibility and Internationalization | Support for multiple languages                       | Minor | 1      | Spanish, Catalan and English                        |
+| Web                                    | Custom-made design system with reusable components   | Minor | 1      | Tokens, icons, 10+ components, light and dark mode  |
+| Data and Analytics                     | GDPR compliance features                             | Minor | 1      | Data export and deletion, confirmation emails       |
+| Gaming and user experience             | Gamification system                                  | Minor | 1      | Map to reveal, passport, levels and friends ranking |
+| Web                                    | Advanced search with filters, sorting and pagination | Minor | 1      | Searching places                                    |
+| Web                                    | File upload and management                           | Minor | 1      | Check-in photos with preview and progress           |
+
+### Reserve — not planned
+
+Progressive Web App, sentiment analysis, data import, a complete notification system and AI content moderation (Minor, 1 point each). Only if there is time left: 24 planned points already exceed what counts.
+
+### Points
+
+| Block                        | Points |
+| ---------------------------- | ------ |
+| Core                         | 14     |
+| Bonus planned                | 10     |
+| **Total planned**            | **24** |
+| Maximum that counts (14 + 5) | 19     |
+| Safety margin                | 5      |
+
+The margin covers modules that might not be validated in the evaluation: if a core module fails, a bonus module takes its place. If scope has to be cut, the Public API goes first (2 points, least value for users), then advanced search.
 
 _Justification and implementation details for each module will be added as they are built._
 
