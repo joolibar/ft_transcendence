@@ -1,5 +1,7 @@
 # Contributing to Miga
 
+New to the project? Set up your machine below, then read the [workflow guide](docs/guides/workflow.md): it walks through a task from issue to release.
+
 ## Setup
 
 1. Install **Docker**, **Node 24** (`nvm use` reads `.nvmrc`) and **pnpm 12** (`npm install --global pnpm@12`).
@@ -32,6 +34,7 @@ Use **pnpm only**. Do not run `npm install` or `yarn`: mixing package managers b
 | Need                                   | Read                                                             |
 | -------------------------------------- | ---------------------------------------------------------------- |
 | How the project is built and organised | [docs/architecture.md](docs/architecture.md)                     |
+| How work flows, from issue to release  | [docs/guides/workflow.md](docs/guides/workflow.md)               |
 | Why things are the way they are        | [docs/decisions/](docs/decisions/)                               |
 | Working with the database              | [docs/guides/database.md](docs/guides/database.md)               |
 | Writing and running tests              | [docs/guides/testing.md](docs/guides/testing.md)                 |
