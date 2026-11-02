@@ -65,7 +65,7 @@ Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`. Because PRs 
 ## Pull requests
 
 1. Push your branch and open a PR into `develop`, filling in the template.
-2. CI must be green: commit authors, format and lint, API build, web build, tests, Docker build.
+2. CI must be green: PR title, branch name, commit authors, format and lint, API build, web build, tests, Docker build.
 3. At least one teammate approves.
 4. Squash and merge, then delete the branch.
 
