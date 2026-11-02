@@ -15,6 +15,7 @@ RUN pnpm --filter @miga/web... build
 FROM nginx:1.29-alpine
 RUN apk add --no-cache openssl
 COPY infra/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY infra/nginx/security-headers.conf /etc/nginx/snippets/security-headers.conf
 COPY infra/nginx/generate-cert.sh /docker-entrypoint.d/10-generate-cert.sh
 RUN chmod +x /docker-entrypoint.d/10-generate-cert.sh
 COPY --from=build /app/apps/web/dist /usr/share/nginx/html
