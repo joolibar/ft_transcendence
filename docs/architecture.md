@@ -1,0 +1,80 @@
+# Architecture
+
+## Services
+
+```
+                Browser
+                   │  HTTPS (only public port)
+                   ▼
+   ┌────────────────────────────────┐
+   │ web — nginx                    │
+   │ serves the React app           │
+   │ /api/*        → api            │
+   │ /socket.io/*  → api            │
+   └───────────────┬────────────────┘
+                   │  HTTP (internal Docker network)
+                   ▼
+   ┌────────────────────────────────┐
+   │ api — Fastify + Prisma         │
+   └───────────────┬────────────────┘
+                   │
+                   ▼
+   ┌────────────────────────────────┐
+   │ db — PostgreSQL                │
+   └────────────────────────────────┘
+```
+
+All three are defined in [`docker-compose.yml`](../docker-compose.yml). In local development (`pnpm dev`) Vite serves the web app on port 5173 and forwards `/api` to the API on port 3000.
+
+## Repository layout
+
+```
+apps/
+  api/                    Backend
+    prisma/               Database schema, migrations, seed data
+    src/
+      modules/<domain>/   One folder per business domain
+      plugins/            Cross-cutting pieces: database, auth, sockets
+      config/             Environment variables, validated at startup
+      lib/                Pure helpers with no business logic
+      app.ts              Builds the Fastify app and registers modules
+      server.ts           Starts the server
+  web/                    Frontend
+    src/
+      app/                Root component, router, global providers
+      pages/              One component per route; only composes pieces
+      features/<domain>/  Components, hooks and API calls of one domain
+      components/ui/      Design system: generic, reusable, no business logic
+      components/layout/  Header, footer, navigation
+      lib/                HTTP client and generic helpers
+      i18n/               Translations (es, ca, en)
+      styles/             Global CSS and Tailwind setup
+packages/
+  shared/src/<domain>.ts  Zod schemas and types used by web and api
+infra/nginx/              HTTPS reverse proxy and the web image
+docs/                     This documentation
+```
+
+Folders are created when the first file that needs them is written, not in advance.
+
+## Rules
+
+1. **Organise by domain, the same way on both sides.** The `reviews` domain lives in `api/src/modules/reviews/`, `web/src/features/reviews/` and `shared/src/reviews.ts`.
+2. **Backend module = routes + service.** `<domain>.routes.ts` handles HTTP (URL, input validation, response). `<domain>.service.ts` holds business logic and database access. Routes never query the database directly.
+3. **Pages are thin, features are thick.** A page only arranges feature components; logic lives in the feature.
+4. **`components/ui` knows nothing about Miga's business.** If a component mentions places, reviews or users, it belongs in a feature.
+5. **Tests live next to the code they test** (`reviews.service.test.ts` beside `reviews.service.ts`).
+6. **Validate with the shared schema on both sides.** The web app validates forms with it for fast feedback; the API validates every request with it because the browser can be bypassed.
+
+## Naming
+
+| What                     | Convention | Example              |
+| ------------------------ | ---------- | -------------------- |
+| Files and folders        | kebab-case | `reviews.service.ts` |
+| React component files    | PascalCase | `ReviewCard.tsx`     |
+| Variables and functions  | camelCase  | `getPlaceById`       |
+| Types and components     | PascalCase | `HealthResponse`     |
+| Constants                | UPPER_CASE | `MAX_GROUP_SIZE`     |
+| Database tables (Prisma) | PascalCase | `model Review`       |
+
+Everything (code, comments, commits, docs) is written in English.

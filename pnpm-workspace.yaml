@@ -1,0 +1,9 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Dependencies allowed to run install scripts (downloads native binaries).
+allowBuilds:
+  '@prisma/engines': true
+  esbuild: true
+  prisma: true

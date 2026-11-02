@@ -1,0 +1,12 @@
+// Database schema for Miga.
+// Models (User, Place, Review, ...) are added here as each feature is built.
+// After editing, run `pnpm --filter @miga/api db:migrate` to create a migration.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}

@@ -1,0 +1,43 @@
+name: Subject module task
+description: Work towards one of the ft_transcendence modules we claim for evaluation
+labels: [module]
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Module category
+      options:
+        - Web
+        - Accessibility and Internationalization
+        - User Management
+        - Artificial Intelligence
+        - Cybersecurity
+        - Gaming and user experience
+        - Devops
+        - Data and Analytics
+        - Modules of choice
+    validations:
+      required: true
+  - type: input
+    id: module
+    attributes:
+      label: Module
+      description: Exact name as written in the subject.
+      placeholder: 'Major: Standard user management and authentication'
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Subject requirements covered by this task
+      description: Copy the bullet points from the subject that this task fulfils.
+    validations:
+      required: true
+  - type: textarea
+    id: criteria
+    attributes:
+      label: How we will demonstrate it in the evaluation
+      placeholder: |
+        - [ ] ...
+    validations:
+      required: true

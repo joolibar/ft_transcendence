@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+apps/api/src/generated/
+
+# Environment — never commit real secrets
+.env
+.env.*
+!.env.example
+
+# Local TLS certificates
+infra/nginx/certs/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
