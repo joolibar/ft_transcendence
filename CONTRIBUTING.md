@@ -21,8 +21,8 @@
 ### Day-to-day development (hot reload)
 
 ```bash
-docker compose up --detach db   # only the database
-pnpm dev                        # API on :3000, web on http://localhost:5173
+make db    # only the database, on localhost:5432
+pnpm dev   # API on :3000, web on http://localhost:5173
 ```
 
 Use **pnpm only**. Do not run `npm install` or `yarn`: mixing package managers breaks the lockfile.

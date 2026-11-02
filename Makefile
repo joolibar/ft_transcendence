@@ -4,7 +4,7 @@
 COMPOSE := docker compose
 
 .DEFAULT_GOAL := all
-.PHONY: all up down re logs ps clean help
+.PHONY: all up down re logs ps clean db help
 
 all: up ## Same as `make up`
 
@@ -30,6 +30,9 @@ ps: ## Show the state of every service
 
 clean: ## Stop everything and delete the database, certificates and images
 	$(COMPOSE) down --volumes --rmi local --remove-orphans
+
+db: .env ## Start only the database, reachable on localhost:5432 (for pnpm dev and pnpm test)
+	$(COMPOSE) -f docker-compose.yml -f docker-compose.dev.yml up --detach db
 
 help: ## List available commands
 	@grep -E '^[a-z]+:.*## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*## "} {printf "  make %-6s %s\n", $$1, $$2}'
