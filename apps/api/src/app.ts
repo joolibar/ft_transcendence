@@ -11,6 +11,9 @@ export async function buildApp(env: Env) {
       env.NODE_ENV === 'development'
         ? { transport: { target: 'pino-pretty', options: { colorize: true } } }
         : true,
+    // nginx sits in front of the API: trust its X-Forwarded-* headers so
+    // request.ip and request.protocol describe the real client.
+    trustProxy: true,
   });
 
   await app.register(helmet);
