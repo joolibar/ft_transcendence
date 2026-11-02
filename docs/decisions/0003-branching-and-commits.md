@@ -19,6 +19,18 @@ Five people will work in parallel. The subject evaluates the Git history: every 
 - Commits follow **Conventional Commits** in English (`feat(auth): add sign-up endpoint`).
 - Every pull request needs green CI and at least one approval, and is merged with **squash and merge**.
 
+## Enforcement
+
+The [`PR conventions`](../../.github/workflows/pr-conventions.yml) workflow checks every pull request:
+
+| Check            | Rule                                                                                                                                            |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Branch name`    | `feature/`, `fix/`, `chore/` or `docs/` + lowercase words separated by hyphens; PRs target `develop`, and only `develop` may target `main`      |
+| `PR title`       | Conventional Commits (`type(scope): description`), at most 72 characters, no final period. The title becomes the commit message on squash merge |
+| `Commit authors` | See [0004](0004-commit-authorship.md)                                                                                                           |
+
+The rules live in [`check-pr-conventions.cjs`](../../.github/scripts/check-pr-conventions.cjs) and are covered by tests (`node --test '.github/scripts/*.test.cjs'`).
+
 ## Consequences
 
 - `main` is always in a state that can be evaluated.

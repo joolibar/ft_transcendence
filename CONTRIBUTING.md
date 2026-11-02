@@ -38,6 +38,8 @@ Use **pnpm only**. Do not run `npm install` or `yarn`: mixing package managers b
 | `chore/*`   | Tooling, config, dependencies, e.g. `chore/ci-cache`                       |
 | `docs/*`    | Documentation only, e.g. `docs/database-schema`                            |
 
+The `Branch name` check rejects any other name, and only `develop` can open a PR into `main`.
+
 Always branch from an up-to-date `develop`:
 
 ```bash
@@ -58,7 +60,7 @@ chore: update dependencies
 docs: describe database schema
 ```
 
-Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`. The scope in parentheses is the domain or app (`auth`, `reviews`, `web`, `api`). Keep commits small and focused. The subject evaluates that **every team member** has clear commits, so commit your own work.
+Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`. Because PRs are squash-merged, **the PR title becomes the commit** in `develop`, so the `PR title` check applies the same format to it. The scope in parentheses is the domain or app (`auth`, `reviews`, `web`, `api`). Keep commits small and focused. The subject evaluates that **every team member** has clear commits, so commit your own work.
 
 ## Pull requests
 
