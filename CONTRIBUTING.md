@@ -23,11 +23,23 @@ New to the project? Set up your machine below, then read the [workflow guide](do
 ### Day-to-day development (hot reload)
 
 ```bash
-docker compose up --detach db   # only the database
-pnpm dev                        # API on :3000, web on http://localhost:5173
+make db    # only the database, on localhost:5432
+pnpm dev   # API on :3000, web on http://localhost:5173
 ```
 
 Use **pnpm only**. Do not run `npm install` or `yarn`: mixing package managers breaks the lockfile.
+
+## Documentation map
+
+| Need                                   | Read                                                             |
+| -------------------------------------- | ---------------------------------------------------------------- |
+| How the project is built and organised | [docs/architecture.md](docs/architecture.md)                     |
+| Why things are the way they are        | [docs/decisions/](docs/decisions/)                               |
+| Working with the database              | [docs/guides/database.md](docs/guides/database.md)               |
+| Writing and running tests              | [docs/guides/testing.md](docs/guides/testing.md)                 |
+| Adding or updating dependencies        | [docs/guides/dependencies.md](docs/guides/dependencies.md)       |
+| Something does not work                | [docs/guides/troubleshooting.md](docs/guides/troubleshooting.md) |
+| Configuring the GitHub repository      | [docs/guides/github-setup.md](docs/guides/github-setup.md)       |
 
 ## Branches
 

@@ -1,11 +1,15 @@
 # Documentation
 
-| Path                                       | What it contains                                                          |
-| ------------------------------------------ | ------------------------------------------------------------------------- |
-| [`architecture.md`](architecture.md)       | How the pieces fit together: services, requests, folders and conventions. |
-| [`guides/workflow.md`](guides/workflow.md) | How work flows: issue, branch, PR, review, merge and release.             |
-| [`decisions/`](decisions/)                 | Architecture Decision Records (ADRs): one file per important decision.    |
-| [`guides/testing.md`](guides/testing.md)   | How to run, write and organise tests.                                     |
+| Path                                                     | What it contains                                                           |
+| -------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`architecture.md`](architecture.md)                     | How the pieces fit together: services, requests, folders and conventions.  |
+| [`guides/workflow.md`](guides/workflow.md)               | How work flows: issue, branch, PR, review, merge and release.              |
+| [`decisions/`](decisions/)                               | Architecture Decision Records (ADRs): one file per important decision.     |
+| [`guides/database.md`](guides/database.md)               | Migrations, schema conventions and database commands.                      |
+| [`guides/dependencies.md`](guides/dependencies.md)       | Adding and updating dependencies safely.                                   |
+| [`guides/github-setup.md`](guides/github-setup.md)       | Every GitHub setting the repository relies on, labels and initial backlog. |
+| [`guides/testing.md`](guides/testing.md)                 | How to run, write and organise tests.                                      |
+| [`guides/troubleshooting.md`](guides/troubleshooting.md) | Common problems and how to fix them.                                       |
 
 ## Writing a new ADR
 

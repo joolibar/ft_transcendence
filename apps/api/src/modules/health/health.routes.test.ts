@@ -23,9 +23,7 @@ describe('GET /api/health', () => {
   it('reports ok when the database answers', async () => {
     const databaseUrl = process.env.DATABASE_URL;
     if (!databaseUrl)
-      throw new Error(
-        'DATABASE_URL is not set. Start the database with `docker compose up -d db` and create .env',
-      );
+      throw new Error('DATABASE_URL is not set. Start the database with `make db` and create .env');
 
     const { statusCode, body } = await getHealth(databaseUrl);
 
