@@ -19,6 +19,12 @@ export default tseslint.config(
     languageOptions: { globals: globals.node },
   },
   {
+    // GitHub Actions scripts are CommonJS because actions/github-script loads them with require().
+    files: ['.github/**/*.cjs'],
+    languageOptions: { sourceType: 'commonjs' },
+    rules: { '@typescript-eslint/no-require-imports': 'off' },
+  },
+  {
     files: ['apps/web/src/**/*.{ts,tsx}'],
     languageOptions: { globals: globals.browser },
     plugins: {
