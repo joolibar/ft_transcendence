@@ -50,6 +50,7 @@ Open **https://localhost:8443**. The certificate is self-signed, so the browser 
 | `make logs`  | Follow the logs                                          |
 | `make ps`    | Show the state of every service                          |
 | `make clean` | Stop everything and delete the database and local images |
+| `make db`    | Start only the database, for local development           |
 
 ### Environment variables
 
