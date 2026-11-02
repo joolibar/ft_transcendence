@@ -63,7 +63,7 @@ Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`. The scope in
 ## Pull requests
 
 1. Push your branch and open a PR into `develop`, filling in the template.
-2. CI must be green: commit authors, format and lint, API build, web build, Docker build.
+2. CI must be green: commit authors, format and lint, API build, web build, tests, Docker build.
 3. At least one teammate approves.
 4. Squash and merge, then delete the branch.
 
@@ -81,16 +81,16 @@ The reasoning is in [docs/decisions/0004-commit-authorship.md](docs/decisions/00
 
 The full layout and its rules are in [docs/architecture.md](docs/architecture.md). In short:
 
-| You are adding…                            | Put it in                                           |
-| ------------------------------------------ | --------------------------------------------------- |
-| An API endpoint                            | `apps/api/src/modules/<domain>/<domain>.routes.ts`  |
-| Business logic or database queries         | `apps/api/src/modules/<domain>/<domain>.service.ts` |
-| A database table                           | `apps/api/prisma/schema.prisma` + a migration       |
-| A request/response shape or validation     | `packages/shared/src/<domain>.ts`                   |
-| A screen                                   | `apps/web/src/pages/`                               |
-| Components, hooks or API calls of a domain | `apps/web/src/features/<domain>/`                   |
-| A generic UI component (Button, Modal…)    | `apps/web/src/components/ui/`                       |
-| A test                                     | Next to the file it tests, as `*.test.ts`           |
+| You are adding…                            | Put it in                                                                                   |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| An API endpoint                            | `apps/api/src/modules/<domain>/<domain>.routes.ts`                                          |
+| Business logic or database queries         | `apps/api/src/modules/<domain>/<domain>.service.ts`                                         |
+| A database table                           | `apps/api/prisma/schema.prisma` + a migration                                               |
+| A request/response shape or validation     | `packages/shared/src/<domain>.ts`                                                           |
+| A screen                                   | `apps/web/src/pages/`                                                                       |
+| Components, hooks or API calls of a domain | `apps/web/src/features/<domain>/`                                                           |
+| A generic UI component (Button, Modal…)    | `apps/web/src/components/ui/`                                                               |
+| A test                                     | Next to the file it tests, as `*.test.ts` (see the [testing guide](docs/guides/testing.md)) |
 
 Create a folder when you add its first file, not before.
 
@@ -99,6 +99,8 @@ Create a folder when you add its first file, not before.
 | Command                              | What it does                          |
 | ------------------------------------ | ------------------------------------- |
 | `pnpm dev`                           | Run web and API with hot reload       |
+| `pnpm test`                          | Run every test (needs the database)   |
+| `pnpm test:coverage`                 | Tests plus a coverage report          |
 | `pnpm lint` / `pnpm typecheck`       | Same checks as CI                     |
 | `pnpm format`                        | Format all files with Prettier        |
 | `pnpm --filter @miga/api db:migrate` | Create and apply a database migration |

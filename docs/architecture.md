@@ -76,7 +76,7 @@ Folders are created when the first file that needs them is written, not in advan
 2. **Backend module = routes + service.** `<domain>.routes.ts` handles HTTP (URL, input validation, response). `<domain>.service.ts` holds business logic and database access. Routes never query the database directly.
 3. **Pages are thin, features are thick.** A page only arranges feature components; logic lives in the feature.
 4. **`components/ui` knows nothing about Miga's business.** If a component mentions places, reviews or users, it belongs in a feature.
-5. **Tests live next to the code they test** (`reviews.service.test.ts` beside `reviews.service.ts`).
+5. **Tests live next to the code they test** (`reviews.service.test.ts` beside `reviews.service.ts`). See the [testing guide](guides/testing.md).
 6. **Validate with the shared schema on both sides.** The web app validates forms with it for fast feedback; the API validates every request with it because the browser can be bypassed.
 
 ## Naming

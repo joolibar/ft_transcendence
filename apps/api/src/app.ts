@@ -5,12 +5,18 @@ import type { Env } from './config/env.js';
 import { healthRoutes } from './modules/health/health.routes.js';
 import { registerPrisma } from './plugins/prisma.js';
 
+// Readable logs in development, JSON logs in production, silence in tests.
+function loggerOptions(nodeEnv: Env['NODE_ENV']) {
+  if (nodeEnv === 'test') return false;
+  if (nodeEnv === 'development') {
+    return { transport: { target: 'pino-pretty', options: { colorize: true } } };
+  }
+  return true;
+}
+
 export async function buildApp(env: Env) {
   const app = Fastify({
-    logger:
-      env.NODE_ENV === 'development'
-        ? { transport: { target: 'pino-pretty', options: { colorize: true } } }
-        : true,
+    logger: loggerOptions(env.NODE_ENV),
     // nginx sits in front of the API: trust its X-Forwarded-* headers so
     // request.ip and request.protocol describe the real client.
     trustProxy: true,
