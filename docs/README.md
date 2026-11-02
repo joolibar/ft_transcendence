@@ -1,9 +1,10 @@
 # Documentation
 
-| Path                                 | What it contains                                                          |
-| ------------------------------------ | ------------------------------------------------------------------------- |
-| [`architecture.md`](architecture.md) | How the pieces fit together: services, requests, folders and conventions. |
-| [`decisions/`](decisions/)           | Architecture Decision Records (ADRs): one file per important decision.    |
+| Path                                       | What it contains                                                          |
+| ------------------------------------------ | ------------------------------------------------------------------------- |
+| [`architecture.md`](architecture.md)       | How the pieces fit together: services, requests, folders and conventions. |
+| [`guides/workflow.md`](guides/workflow.md) | How work flows: issue, branch, PR, review, merge and release.             |
+| [`decisions/`](decisions/)                 | Architecture Decision Records (ADRs): one file per important decision.    |
 
 ## Writing a new ADR
 

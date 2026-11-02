@@ -1,5 +1,7 @@
 # Contributing to Miga
 
+New to the project? Set up your machine below, then read the [workflow guide](docs/guides/workflow.md): it walks through a task from issue to release.
+
 ## Setup
 
 1. Install **Docker**, **Node 24** (`nvm use` reads `.nvmrc`) and **pnpm 12** (`npm install --global pnpm@12`).
