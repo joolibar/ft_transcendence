@@ -10,7 +10,8 @@
 
 - [ ] The branch name follows `feature/`, `fix/` or `chore/` + short description
 - [ ] Commits follow Conventional Commits (`feat:`, `fix:`, `chore:`...)
-- [ ] `pnpm lint`, `pnpm typecheck` and `pnpm build` pass locally
+- [ ] New or changed behaviour has tests (see `docs/guides/testing.md`)
+- [ ] `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm build` pass locally
 - [ ] User inputs are validated in both the web app and the API
 - [ ] No warnings or errors in the browser console
 - [ ] No secrets or `.env` values committed
