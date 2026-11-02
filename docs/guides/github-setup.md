@@ -16,7 +16,18 @@ The repository rules in [`docs/decisions/`](../decisions/) only protect the proj
 
 ## 2. Branch rulesets — Settings → Rules → Rulesets **(required)**
 
-Create two branch rulesets with **Enforcement status: Active**.
+> **Plan requirement:** GitHub only enforces rulesets on **public** repositories or on private repositories owned by a **GitHub Pro** account (free for students with the [GitHub Student Developer Pack](https://education.github.com/pack)). On a free plan with a private repository, the API answers "Upgrade to GitHub Pro or make this repository public".
+
+The two rulesets are stored as code in [`.github/rulesets/`](../../.github/rulesets/), so they can be reviewed in PRs and applied with one command each:
+
+```bash
+gh api -X POST repos/joolibar/ft_transcendence/rulesets --input .github/rulesets/develop.json
+gh api -X POST repos/joolibar/ft_transcendence/rulesets --input .github/rulesets/main.json
+```
+
+To change an existing ruleset, edit its file and replace `POST …/rulesets` with `PUT …/rulesets/<id>` (`gh api repos/joolibar/ft_transcendence/rulesets` lists the ids).
+
+What they contain, for reference or to create them by hand with **Enforcement status: Active**:
 
 ### Ruleset `develop`
 
@@ -25,22 +36,23 @@ Target: branch `develop`.
 - ✅ Restrict deletions
 - ✅ Block force pushes
 - ✅ Require a pull request before merging
-  - Required approvals: **1**
+  - Required approvals: **0 while one person works on the repository, 1 as soon as the team joins.** GitHub does not let authors approve their own PRs, so requiring 1 approval with a single member would block every merge. When the second member joins, set `required_approving_review_count` to `1` in both files and apply them.
   - ✅ Dismiss stale pull request approvals when new commits are pushed
   - ✅ Require conversation resolution before merging
   - Allowed merge methods: **Squash**
 - ✅ Require status checks to pass, with ✅ "Require branches to be up to date before merging", and these checks:
 
-| Check                     | Workflow       | What it verifies                         |
-| ------------------------- | -------------- | ---------------------------------------- |
-| `Format and lint`         | CI             | Prettier and ESLint                      |
-| `API typecheck and build` | CI             | The API compiles                         |
-| `Web typecheck and build` | CI             | The web app compiles                     |
-| `Tests`                   | CI             | Every test passes against PostgreSQL     |
-| `Docker images build`     | CI             | `make` would be able to build the images |
-| `PR title`                | PR conventions | Conventional Commits title               |
-| `Branch name`             | PR conventions | Allowed prefix and target branch         |
-| `Commit authors`          | PR conventions | Team members only, no AI attribution     |
+| Check                      | Workflow       | What it verifies                         |
+| -------------------------- | -------------- | ---------------------------------------- |
+| `Format and lint`          | CI             | Prettier and ESLint                      |
+| `API typecheck and build`  | CI             | The API compiles                         |
+| `Web typecheck and build`  | CI             | The web app compiles                     |
+| `Tests`                    | CI             | Every test passes against PostgreSQL     |
+| `Docker images build`      | CI             | `make` would be able to build the images |
+| `PR title`                 | PR conventions | Conventional Commits title               |
+| `Branch name`              | PR conventions | Allowed prefix and target branch         |
+| `Commit authors`           | PR conventions | Team members only, no AI attribution     |
+| `Convention scripts tests` | PR conventions | The tests of the rules above pass        |
 
 A check only appears in the search box after it has run at least once in the repository.
 
@@ -81,7 +93,9 @@ Add every team member with the **Write** role. Admin access only for whoever mai
 
 ## 7. Labels — Issues → Labels
 
-Issue templates apply `feature`, `bug` and `module` automatically; GitHub silently ignores labels that do not exist, so create them first.
+Issue templates apply `feature`, `bug` and `module` automatically; GitHub silently ignores labels that do not exist, so create them first. Each one can be created (or updated) with `gh label create "<name>" --color <color> --description "<description>" --force`.
+
+GitHub also adds its default labels (`documentation`, `enhancement`, `question`…). Prefer the ones below, which match our branch prefixes and commit types.
 
 | Label         | Color     | Description                                                 |
 | ------------- | --------- | ----------------------------------------------------------- |
