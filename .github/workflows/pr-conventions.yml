@@ -1,0 +1,59 @@
+name: PR conventions
+
+# Rules about how work is submitted, not about the code itself.
+# See docs/decisions/0003-branching-and-commits.md and 0004-commit-authorship.md.
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+concurrency:
+  group: pr-conventions-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  title:
+    name: PR title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const { checkTitle } = require('./.github/scripts/check-pr-conventions.cjs');
+            checkTitle({ context, core });
+
+  branch:
+    name: Branch name
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const { checkBranch } = require('./.github/scripts/check-pr-conventions.cjs');
+            checkBranch({ context, core });
+
+  authors:
+    name: Commit authors
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const { checkCommitAuthors } = require('./.github/scripts/check-commit-authors.cjs');
+            await checkCommitAuthors({ github, context, core });
+
+  scripts:
+    name: Convention scripts tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: node --test '.github/scripts/*.test.cjs'
