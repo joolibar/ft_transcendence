@@ -78,6 +78,10 @@ The file has Windows line endings (CRLF). `.gitattributes` prevents this for fil
 
 The database volume was created with a different base image (for example before the move to Debian in [ADR 0006](../decisions/0006-debian-base-images.md)). Text indexes may be in the wrong order. With no data to keep, recreate it: `make clean && make`.
 
+## The browser console says "violates the following Content Security Policy directive"
+
+The web app tried to load a script, style, image or connection from somewhere the policy does not allow. If it is an external service we really use, add its exact origin to the matching directive in `infra/nginx/security-headers.conf`; if it is inline code, move it into a file. See [Content-Security-Policy](../architecture.md#content-security-policy).
+
 ## Start again from scratch
 
 ```bash

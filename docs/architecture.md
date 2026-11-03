@@ -30,14 +30,27 @@ In local development, `make db` starts only the database and publishes it on `lo
 
 ## Security at the edges
 
-| Measure                             | Where                                                                                                                             |
-| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| HTTPS only, TLS 1.2+                | nginx is the only published port ([`nginx.conf`](../infra/nginx/nginx.conf))                                                      |
-| Security headers on the web app     | [`security-headers.conf`](../infra/nginx/security-headers.conf): HSTS, no sniffing, no framing, referrer and permissions policies |
-| Security headers on the API         | `@fastify/helmet` in [`app.ts`](../apps/api/src/app.ts)                                                                           |
-| Database not reachable from outside | `db` publishes no port in `docker-compose.yml`                                                                                    |
-| Real client IP behind the proxy     | Fastify `trustProxy`, using nginx's `X-Forwarded-*` headers                                                                       |
-| Secrets out of Git                  | `.env` is ignored; `.env.example` documents every variable                                                                        |
+| Measure                             | Where                                                                                                                                                                                  |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTTPS only, TLS 1.2+                | nginx is the only published port ([`nginx.conf`](../infra/nginx/nginx.conf))                                                                                                           |
+| Security headers on the web app     | [`security-headers.conf`](../infra/nginx/security-headers.conf): HSTS, no sniffing, no framing, referrer and permissions policies, Content-Security-Policy, Cross-Origin-Opener-Policy |
+| Security headers on the API         | `@fastify/helmet` in [`app.ts`](../apps/api/src/app.ts)                                                                                                                                |
+| Database not reachable from outside | `db` publishes no port in `docker-compose.yml`                                                                                                                                         |
+| Real client IP behind the proxy     | Fastify `trustProxy`, using nginx's `X-Forwarded-*` headers                                                                                                                            |
+| Secrets out of Git                  | `.env` is ignored; `.env.example` documents every variable                                                                                                                             |
+
+### Content-Security-Policy
+
+The web app is served with a strict Content-Security-Policy: the browser only runs scripts, applies styles, shows images and opens connections that come from Miga's own origin. If an attacker manages to inject HTML (cross-site scripting), the browser still refuses to run it.
+
+What this means when writing code:
+
+- **No inline scripts or styles in HTML** (`<script>…</script>`, `<style>`, `onclick="…"`). React's `style={{…}}` is fine: React applies it from JavaScript.
+- **No `eval` or `new Function`**, and no libraries that need them.
+- **External services must be allowed explicitly.** Images from a places API, an OAuth provider's avatars or a map tile server will be blocked until their origin is added to the right directive (`img-src`, `connect-src`…) in `security-headers.conf`. Add only the exact origin, never a wildcard, and say why in the PR.
+- **Sign in with OAuth by redirecting the page**, not in a popup: `Cross-Origin-Opener-Policy: same-origin` cuts the link between Miga and windows from other sites.
+
+A blocked resource shows up in the browser console as "Refused to load … because it violates the following Content Security Policy directive".
 
 ## Repository layout
 
