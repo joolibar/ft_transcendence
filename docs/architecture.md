@@ -91,6 +91,7 @@ Folders are created when the first file that needs them is written, not in advan
 4. **`components/ui` knows nothing about Miga's business.** If a component mentions places, reviews or users, it belongs in a feature.
 5. **Tests live next to the code they test** (`reviews.service.test.ts` beside `reviews.service.ts`). See the [testing guide](guides/testing.md).
 6. **Validate with the shared schema on both sides.** The web app validates forms with it for fast feedback; the API validates every request with it because the browser can be bypassed.
+7. **The linter checks types too.** ESLint uses typescript-eslint's `strictTypeChecked` rules, which read TypeScript's types to catch real bugs: promises nobody awaits or handles, `async` functions with nothing to await, values that may be `undefined`, unsafe `any`. Fix the code rather than disabling a rule; if a rule is really wrong for one line, disable it on that line only with a comment that says why. Fastify plugins with nothing to await use the callback form (`FastifyPluginCallback` and `done()`), as in [`health.routes.ts`](../apps/api/src/modules/health/health.routes.ts).
 
 ## Naming
 

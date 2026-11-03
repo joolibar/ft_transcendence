@@ -7,7 +7,25 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   { ignores: ['**/dist/**', '**/node_modules/**', '**/src/generated/**'] },
   js.configs.recommended,
-  ...tseslint.configs.recommended,
+  // Type-aware rules: they use TypeScript's types to find real bugs (promises
+  // nobody awaits, values that may be undefined, unsafe `any`).
+  ...tseslint.configs.strictTypeChecked,
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: {
+          // Root config files are not part of any workspace tsconfig.
+          allowDefaultProject: ['*.js', '*.ts'],
+        },
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
+    // Plain JavaScript has no types to check.
+    files: ['**/*.{js,cjs}'],
+    ...tseslint.configs.disableTypeChecked,
+  },
   {
     files: [
       'apps/api/**/*.ts',

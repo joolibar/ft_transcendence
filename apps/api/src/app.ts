@@ -6,7 +6,7 @@ import { healthRoutes } from './modules/health/health.routes.js';
 import { registerPrisma } from './plugins/prisma.js';
 
 // Readable logs in development, JSON logs in production, silence in tests.
-function loggerOptions(nodeEnv: Env['NODE_ENV']) {
+export function loggerOptions(nodeEnv: Env['NODE_ENV']) {
   if (nodeEnv === 'test') return false;
   if (nodeEnv === 'development') {
     return { transport: { target: 'pino-pretty', options: { colorize: true } } };
@@ -24,7 +24,7 @@ export async function buildApp(env: Env) {
 
   await app.register(helmet);
   await app.register(sensible);
-  await registerPrisma(app, env.DATABASE_URL);
+  registerPrisma(app, env.DATABASE_URL);
 
   // Every feature lives in src/modules/<feature> and is registered under /api.
   await app.register(

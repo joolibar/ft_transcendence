@@ -69,4 +69,6 @@ For each feature, cover at least:
 
 ## Coverage
 
-`pnpm test:coverage` reports which lines no test executes. There is no minimum percentage enforced yet: use the report to find untested logic, not to chase a number. Startup code (`server.ts`, `main.tsx`) and generated code are excluded.
+`pnpm test:coverage` reports which lines no test executes. Startup code (`server.ts`, `main.tsx`) and generated code are excluded.
+
+The `Tests` check fails if statements, branches, functions or lines drop below **80 %** (`thresholds` in [`vitest.config.ts`](../../vitest.config.ts)). A PR that adds code without tests will usually fail it. The answer is to write the missing tests, never to lower the numbers; raise them as the project grows. Use the report to find untested logic, not to chase a number: a test that runs a line without checking its result adds coverage but no safety.

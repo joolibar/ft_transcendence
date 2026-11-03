@@ -1,7 +1,7 @@
 import type { HealthResponse } from '@miga/shared';
-import type { FastifyInstance } from 'fastify';
+import type { FastifyPluginCallback } from 'fastify';
 
-export async function healthRoutes(app: FastifyInstance) {
+export const healthRoutes: FastifyPluginCallback = (app, _options, done) => {
   app.get('/health', async (): Promise<HealthResponse> => {
     let database: HealthResponse['database'] = 'up';
     try {
@@ -16,4 +16,5 @@ export async function healthRoutes(app: FastifyInstance) {
       uptimeSeconds: Math.round(process.uptime()),
     };
   });
-}
+  done();
+};

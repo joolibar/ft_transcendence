@@ -117,12 +117,13 @@ Create a folder when you add its first file, not before.
 
 ## Useful commands
 
-| Command                              | What it does                          |
-| ------------------------------------ | ------------------------------------- |
-| `pnpm dev`                           | Run web and API with hot reload       |
-| `pnpm test`                          | Run every test (needs the database)   |
-| `pnpm test:coverage`                 | Tests plus a coverage report          |
-| `pnpm lint` / `pnpm typecheck`       | Same checks as CI                     |
-| `pnpm format`                        | Format all files with Prettier        |
-| `pnpm --filter @miga/api db:migrate` | Create and apply a database migration |
-| `pnpm --filter @miga/api db:studio`  | Browse the database in the browser    |
+| Command                              | What it does                                                                      |
+| ------------------------------------ | --------------------------------------------------------------------------------- |
+| `pnpm dev`                           | Run web and API with hot reload                                                   |
+| `pnpm test`                          | Run every test (needs the database)                                               |
+| `pnpm test:coverage`                 | Tests plus a coverage report                                                      |
+| `pnpm lint` / `pnpm typecheck`       | Same checks as CI                                                                 |
+| `pnpm generate`                      | Build `@miga/shared` and the Prisma client (lint, tests and the editor need them) |
+| `pnpm format`                        | Format all files with Prettier                                                    |
+| `pnpm --filter @miga/api db:migrate` | Create and apply a database migration                                             |
+| `pnpm --filter @miga/api db:studio`  | Browse the database in the browser                                                |
