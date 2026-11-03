@@ -47,9 +47,22 @@ Each phase is a milestone of one or two sprints and ends with a demo and a relea
 | 6 — Bonus            | `v0.6.0` | 2       | Search, photos, gamification, data export and deletion, public API | Search (#32), photos (#33), gamification (#40), GDPR (#39), public API (#41), design system completion (#28), analytics (#55), diary (#56), friends feed (#57)                                                                    | +5 bonus    |
 | 7 — Evaluation       | `v1.0.0` | 1       | The evaluation, rehearsed                                          | Accessibility audit (#38), mandatory requirements (#25), rehearsal and bug bash (#47). No new features                                                                                                                            | —           |
 
-**Design runs one phase ahead.** The product brief's phase 0 (research, user flows, wireframes, design system and prototype) does not end: the screens of the next phase are designed and tested in Figma while the current one is built, and an issue with a screen is only **Ready** when its design is (Definition of Ready).
+**Design runs as its own track, ahead of development** ([ADR 0009](../decisions/0009-design-track-ahead-of-development.md)). Two tracks share the same sprints, goals, reviews and retrospectives:
 
-This work lives in the **UX/UI design and prototype** epic (#66). Its sub-issues are titled `Design: …`, labelled `design` and assigned to the PO, and each one sits in the milestone of the phase **during** which it is done, one phase before the screens are built: the phase 3 screens are a phase 2 issue. The design of the phase 2 screens (#70) is the exception: it has to be finished before the first sprint planning, or sprint 1 starts with the issues that have no screen (data model, PostGIS, the OpenStreetMap import, languages, accessibility checks).
+- **Design track (the PO):** most of the design is done in the first sprints: the design system, the high-fidelity screens of the core phases (2 to 5), the interactive prototype of every flow and the second usability test. After that it stays at least one phase ahead. The PO takes no programming issues until this front-loaded design is done.
+- **Development track (the rest of the team):** builds what has no screens first (data model, PostGIS, the OpenStreetMap import, languages, validation, accessibility checks, real time, emails, the AI spikes), and each screen once its design is closed. An issue with a screen is only **Ready** when its design is (Definition of Ready).
+- **Bonus screens (phase 6)** are designed as wireframes first (#77). High fidelity (#147) starts only once the 14 core points are on track and the team confirms which bonus modules go ahead.
+
+This work lives in the **UX/UI design and prototype** epic (#66). Its sub-issues are labelled `design`, assigned to the PO, sit in the milestone of the phase **during** which they are done, and their titles say what they deliver:
+
+| Prefix           | What it delivers                                        | Example                             |
+| ---------------- | ------------------------------------------------------- | ----------------------------------- |
+| `Design system:` | Tokens, components and their documentation, in Figma    | `Design system: core components`    |
+| `Screens:`       | The screens of one phase, as wireframes or final design | `Screens: phase 2 in high fidelity` |
+| `Prototype:`     | The clickable prototype of a set of flows               | `Prototype: flows 1 to 4`           |
+| `Research:`      | A test or study with users, and its findings            | `Research: usability test, round 2` |
+
+Design lives in two Figma files: _Miga · Design System_ (tokens, components, brand and icons) and _Miga · Product_ (screens and prototype). The design documents (brief, research, brand, information architecture, user flows) are in the team's shared drive.
 
 **The product brief** is the source of the product's scope and its MoSCoW priorities. Its Must items are epics or issues on the board; its Should items are in phase 6; its Could items stay out until there is time.
 
