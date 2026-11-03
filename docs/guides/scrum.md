@@ -55,12 +55,12 @@ Each phase is a milestone of one or two sprints and ends with a demo and a relea
 
 This work lives in the **UX/UI design and prototype** epic (#66). Its sub-issues are labelled `design`, assigned to the PO, sit in the milestone of the phase **during** which they are done, and their titles say what they deliver:
 
-| Prefix           | What it delivers                                        | Example                             |
-| ---------------- | ------------------------------------------------------- | ----------------------------------- |
-| `Design system:` | Tokens, components and their documentation, in Figma    | `Design system: core components`    |
-| `Screens:`       | The screens of one phase, as wireframes or final design | `Screens: phase 2 in high fidelity` |
-| `Prototype:`     | The clickable prototype of a set of flows               | `Prototype: flows 1 to 4`           |
-| `Research:`      | A test or study with users, and its findings            | `Research: usability test, round 2` |
+| Prefix           | What it delivers                                                                        | Example                                   |
+| ---------------- | --------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `Design system:` | Tokens, components and their documentation, in Figma (the code for them is in epic #28) | `Design system: core components in Figma` |
+| `Screens:`       | The screens of one phase, as wireframes or final design                                 | `Screens: phase 2 in high fidelity`       |
+| `Prototype:`     | The clickable prototype of a set of flows                                               | `Prototype: flows 1 to 4`                 |
+| `Research:`      | A test or study with users, and its findings                                            | `Research: usability test, round 2`       |
 
 Design lives in two Figma files: _Miga · Design System_ (tokens, components, brand and icons) and _Miga · Product_ (screens and prototype). The design documents (brief, research, brand, information architecture, user flows) are in the team's shared drive.
 
