@@ -63,6 +63,7 @@ apps/
       plugins/            Cross-cutting pieces: database, auth, sockets
       config/             Environment variables, validated at startup
       lib/                Pure helpers with no business logic
+      generated/          Prisma client from `pnpm generate` (ignored by Git)
       app.ts              Builds the Fastify app and registers modules
       server.ts           Starts the server
   web/                    Frontend
@@ -75,6 +76,7 @@ apps/
       lib/                HTTP client and generic helpers
       i18n/               Translations (es, ca, en)
       styles/             Global CSS and Tailwind setup
+      test/               Test setup shared by every web test
 packages/
   shared/src/<domain>.ts  Zod schemas and types used by web and api
 infra/nginx/              HTTPS reverse proxy and the web image
