@@ -101,7 +101,9 @@ Add every team member with the **Write** role. Admin access only for whoever mai
 
 Issue templates apply `feature`, `bug` and `module` automatically; GitHub silently ignores labels that do not exist, so create them first. Each one can be created (or updated) with `gh label create "<name>" --color <color> --description "<description>" --force`.
 
-GitHub also adds its default labels (`documentation`, `enhancement`, `question`…). Prefer the ones below, which match our branch prefixes and commit types.
+GitHub creates some default labels with every repository. We deleted the ones that duplicate ours or only make sense for open-source projects (`documentation`, `enhancement`, `good first issue`, `help wanted`) and kept the rest, listed in the second table. The repository must have exactly the labels of both tables.
+
+Our labels, which match the branch prefixes and commit types:
 
 | Label         | Color     | Description                                                 |
 | ------------- | --------- | ----------------------------------------------------------- |
@@ -115,6 +117,16 @@ GitHub also adds its default labels (`documentation`, `enhancement`, `question`�
 | `area: api`   | `#C2E0C6` | Backend                                                     |
 | `area: infra` | `#C2E0C6` | Docker, nginx, CI                                           |
 | `blocked`     | `#000000` | Waiting on something else                                   |
+
+GitHub defaults we keep, mostly to say why an issue was closed without changes:
+
+| Label           | Color     | Use it for                                             |
+| --------------- | --------- | ------------------------------------------------------ |
+| `question`      | `#D876E3` | Asking for information or a decision, not a task       |
+| `duplicate`     | `#CFD3D7` | Closed: another issue or PR already covers it          |
+| `invalid`       | `#E4E669` | Closed: not a real problem, or not reproducible        |
+| `wontfix`       | `#FFFFFF` | Closed: we decided not to do it (say why in a comment) |
+| `accessibility` | `#F143AB` | A barrier for people with disabilities (WCAG module)   |
 
 ## 8. Project board — Projects → New project → Board
 
