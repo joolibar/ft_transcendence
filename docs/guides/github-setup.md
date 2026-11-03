@@ -177,9 +177,23 @@ GitHub's own fields are also used: `Milestone` (the phase), `Parent issue` and `
 | In review      | Table   | `status:"In review"`          | Sort by `Updated`, oldest first                                          |
 | My work        | Table   | `assignee:@me -status:Done`   | Sort by `Priority`                                                       |
 
-**Workflows** (⋯ → Workflows), set by hand: turn on **Auto-add to project** for `is:issue,pr is:open` in this repository and **Auto-add sub-issues to project**; keep **Item closed** and **Pull request merged** setting the status to `Done`; turn on **Item reopened** setting it to `Ready`.
+**Workflows** (⋯ → Workflows): GitHub's built-in automations move the cards, so no GitHub Actions are needed for the board. The API can list them but not turn them on, so set them by hand:
 
-**Access:** a project owned by a user has its own access list. Invite each team member in ⋯ → Settings → Manage access with the **Write** role, or they will not see the board. The project is private; the repository is public.
+| Workflow                       | Setting                                                             |
+| ------------------------------ | ------------------------------------------------------------------- |
+| Auto-add to project            | Create it for this repository with the filter `is:issue,pr is:open` |
+| Auto-add sub-issues to project | On (already on)                                                     |
+| Item added to project          | On, status `Backlog`                                                |
+| Pull request linked to issue   | On, status `In review`                                              |
+| Item closed                    | On, status `Done`                                                   |
+| Pull request merged            | On, status `Done`                                                   |
+| Auto-close issue               | Off: an issue is closed by its PR, not by moving its card           |
+
+Moving a card to **In progress** stays manual: it is the signal that someone has taken the issue.
+
+We decided against GitHub Actions for the board: a project owned by a user can only be changed by an Action with a personal access token stored as a secret, which is one more credential to protect for something the built-in workflows already do.
+
+**Access:** a project owned by a user has its own access list, separate from the repository's. Giving someone access to the repository does **not** give them the board: invite each team member in ⋯ → Settings → Manage access with the **Write** role. The project is private; the repository is public.
 
 The board, issues and PRs are the evidence for the README's "Project Management" section.
 
