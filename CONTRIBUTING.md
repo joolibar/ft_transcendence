@@ -56,10 +56,10 @@ Use **pnpm only**. Do not run `npm install` or `yarn`: mixing package managers b
 | ----------- | -------------------------------------------------------------------------- |
 | `main`      | Stable, evaluable version. Protected: only updated by a PR from `develop`. |
 | `develop`   | Integration branch and default branch. Protected: only updated by PRs.     |
-| `feature/*` | New functionality, e.g. `feature/auth-signup`                              |
-| `fix/*`     | Bug fixes, e.g. `fix/review-form-validation`                               |
-| `chore/*`   | Tooling, config, dependencies, e.g. `chore/ci-cache`                       |
-| `docs/*`    | Documentation only, e.g. `docs/database-schema`                            |
+| `feature/*` | New functionality, e.g. `feature/18-email-sign-up`                         |
+| `fix/*`     | Bug fixes, e.g. `fix/170-review-form-validation`                           |
+| `chore/*`   | Tooling, config, dependencies, e.g. `chore/62-postgis`                     |
+| `docs/*`    | Documentation only, e.g. `docs/23-readme-team`                             |
 
 The `Branch name` check rejects any other name, and only `develop` can open a PR into `main`.
 
@@ -67,30 +67,34 @@ Always branch from an up-to-date `develop`:
 
 ```bash
 git switch develop && git pull
-git switch -c feature/short-description
+git switch -c feature/<issue>-short-description
 ```
 
 The reasoning is in [docs/decisions/0003-branching-and-commits.md](docs/decisions/0003-branching-and-commits.md).
 
 ## Commits
 
-We use [Conventional Commits](https://www.conventionalcommits.org/), in English:
+We use [Conventional Commits](https://www.conventionalcommits.org/), in English, with our own types and scopes:
 
 ```
-feat(auth): add email sign-up endpoint
-fix(web): show error when login fails
-chore: update dependencies
-docs: describe database schema
+feat(auth): add email and password sign-up
+fix(plans): close the vote when everyone has voted
+build(deps): update fastify to 5.3
+docs(guides): explain how to seed the database
 ```
 
-Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`. Because PRs are squash-merged, **the PR title becomes the commit** in `develop`, so the `PR title` check applies the same format to it. The scope in parentheses is the domain or app (`auth`, `reviews`, `web`, `api`). Keep commits small and focused. The subject evaluates that **every team member** has clear commits, so commit your own work.
+The format is `type(scope): description`: an allowed type, a scope from the list, a description in the imperative starting with a lowercase letter, at most 72 characters and no final period. Because PRs are squash-merged, **the PR title becomes the commit** in `develop`, so the `PR title` check applies the same rules to it. The types, scopes, rules and good and bad examples are in [Commit messages](docs/guides/workflow.md#commit-messages).
+
+Turn on the optional commit hook once per clone, so every commit is checked as you write it: `pnpm hooks:install`.
+
+Keep commits small and focused. The subject evaluates that **every team member** has clear commits, so commit your own work.
 
 ## Pull requests
 
 1. Push your branch and open a PR into `develop`, filling in the template.
 2. Every check must be green: PR title, branch name, commit authors, format and lint, API build, web build, tests, Docker build, dependency review and CodeQL (the full list is in the [GitHub setup guide](docs/guides/github-setup.md#ruleset-develop)).
 3. At least one teammate approves (required from the first development sprint).
-4. Squash and merge, then delete the branch.
+4. Squash and merge (the commit is the PR title), then delete the branch.
 
 ## AI tools
 

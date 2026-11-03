@@ -1,0 +1,4 @@
+#!/bin/sh
+# Checks the commit message with commitlint before the commit is created.
+# Installed with `pnpm hooks:install`; skip once with `git commit --no-verify`.
+exec pnpm exec commitlint --edit "$1"

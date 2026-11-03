@@ -94,9 +94,9 @@ make
 You pushed directly to `develop` or `main`. Both are protected: changes only enter through a pull request. Move your commits to a new branch and open a PR:
 
 ```bash
-git switch -c feature/my-change     # the new branch keeps your commits
+git switch -c feature/44-my-change  # the new branch keeps your commits
 git branch -f develop origin/develop # put local develop back where GitHub has it
-git push -u origin feature/my-change
+git push -u origin feature/44-my-change
 ```
 
 ## `git push` is rejected with "Push cannot contain secrets"
@@ -108,7 +108,7 @@ GitHub's push protection found a password, key or token in one of your commits. 
 | Check               | What to do                                                                                                                                                                                   |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Format and lint`   | Run `pnpm format` and `pnpm lint` locally, fix and push                                                                                                                                      |
-| `PR title`          | Edit the PR title; the check re-runs automatically                                                                                                                                           |
+| `PR title`          | Read which rule failed (type, scope, branch prefix, length), edit the title; the check re-runs automatically                                                                                 |
 | `Branch name`       | Create a correctly named branch from yours and open a new PR                                                                                                                                 |
 | `Commit authors`    | Fix `git config user.email`, then reword the commits (`git commit --amend --reset-author` for the last one)                                                                                  |
 | `Dependency review` | A dependency you added has a known vulnerability: the check's summary names it. Use a fixed version or another package ([dependencies guide](dependencies.md#security-alerts-and-overrides)) |

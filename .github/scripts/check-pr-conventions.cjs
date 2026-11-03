@@ -1,9 +1,15 @@
-// Checks that a pull request follows docs/decisions/0003-branching-and-commits.md:
-// the branch name, the target branch and the title (which becomes the commit
-// message when the PR is squash-merged).
+// Checks that a pull request follows docs/decisions/0003-branching-and-commits.md and
+// 0010-commit-conventions.md: the branch name, the target branch and the title (which
+// becomes the commit message when the PR is squash-merged). The allowed types, branch
+// prefixes and scopes live in .github/conventions.json, shared with commitlint.
 
-const BRANCH_PATTERN = /^(feature|fix|chore|docs)\/[a-z0-9]+(-[a-z0-9]+)*$/;
-const TITLE_PATTERN = /^(feat|fix|chore|docs|refactor|test|style)(\([a-z0-9-]+\))?!?: \S.*$/;
+const conventions = require('../conventions.json');
+
+const TYPES = Object.keys(conventions.types);
+const PREFIXES = Object.keys(conventions.branches);
+const SCOPES = Object.keys(conventions.scopes);
+const BRANCH_PATTERN = new RegExp(`^(${PREFIXES.join('|')})/(\\d+)-[a-z0-9]+(-[a-z0-9]+)*$`);
+const TITLE_PATTERN = /^([a-z]+)(?:\(([a-z0-9-]+)\))?(!)?: (\S.*)$/;
 const TITLE_MAX_LENGTH = 72;
 
 function branchProblems(head, base) {
@@ -18,20 +24,50 @@ function branchProblems(head, base) {
   }
   if (!BRANCH_PATTERN.test(head)) {
     problems.push(
-      `Branch "${head}" must look like feature/short-name, fix/short-name, ` +
-        'chore/short-name or docs/short-name (lowercase words separated by hyphens).',
+      `Branch "${head}" must look like <prefix>/<issue>-<description>, for example ` +
+        `feature/44-place-search, with prefix ${PREFIXES.join(', ')} and lowercase words ` +
+        'separated by hyphens.',
     );
   }
   return problems;
 }
 
-function titleProblems(title) {
+// `head` is optional: when it is a work branch, the type must belong to its prefix.
+function titleProblems(title, head) {
   const problems = [];
-  if (!TITLE_PATTERN.test(title)) {
+  const match = TITLE_PATTERN.exec(title);
+  if (!match) {
     problems.push(
       `Title "${title}" must follow Conventional Commits: "type(scope): description", ` +
-        'with type feat, fix, chore, docs, refactor, test or style.',
+        'for example "feat(places): add search with filters".',
     );
+  } else {
+    const [, type, scope, , description] = match;
+    if (!TYPES.includes(type)) {
+      problems.push(`Type "${type}" is not allowed. Use one of: ${TYPES.join(', ')}.`);
+    }
+    if (scope !== undefined && !SCOPES.includes(scope)) {
+      problems.push(
+        `Scope "${scope}" is not in .github/conventions.json. Use one of: ${SCOPES.join(', ')}, ` +
+          'or add it there in its own PR.',
+      );
+    }
+    if (/^[A-Z][a-z]/.test(description)) {
+      problems.push(
+        'The description must start with a lowercase letter: "add search", not "Add search".',
+      );
+    }
+    const prefix = head && head.split('/')[0];
+    if (
+      TYPES.includes(type) &&
+      conventions.branches[prefix] &&
+      !conventions.branches[prefix].includes(type)
+    ) {
+      problems.push(
+        `Type "${type}" does not belong in a ${prefix}/ branch, which takes ` +
+          `${conventions.branches[prefix].join(', ')}.`,
+      );
+    }
   }
   if (title.length > TITLE_MAX_LENGTH) {
     problems.push(`Title is ${title.length} characters long; keep it under ${TITLE_MAX_LENGTH}.`);
@@ -57,8 +93,8 @@ function checkBranch({ context, core }) {
 }
 
 function checkTitle({ context, core }) {
-  const { title } = context.payload.pull_request;
-  report(core, titleProblems(title), `Title "${title}" is valid.`);
+  const { title, head } = context.payload.pull_request;
+  report(core, titleProblems(title, head.ref), `Title "${title}" is valid.`);
 }
 
 module.exports = { checkBranch, checkTitle, branchProblems, titleProblems };
