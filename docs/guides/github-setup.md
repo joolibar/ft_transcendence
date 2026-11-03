@@ -125,6 +125,7 @@ Our labels, which match the branch prefixes and commit types:
 | `area: infra` | `#C2E0C6` | Docker, nginx, CI                                           |
 | `blocked`     | `#000000` | Waiting on something else                                   |
 | `epic`        | `#3E4B9E` | Large piece of work, split into sub-issues                  |
+| `spike`       | `#FBCA04` | Timeboxed research that ends in a decision                  |
 
 GitHub defaults we keep, mostly to say why an issue was closed without changes:
 
@@ -161,7 +162,7 @@ The board is a GitHub Project owned by `joolibar` and linked to the repository. 
 
 GitHub's own fields are also used: `Milestone` (the phase), `Parent issue` and `Sub-issues progress` (epics), `Linked pull requests`, `Reviewers`.
 
-**Milestones** (Issues → Milestones): one per phase, `Phase N — Name (vX.Y.Z)`, with no due date. Phase 1 holds the pull requests that set up the project.
+**Milestones** (Issues → Milestones): one per phase, `Phase N — Name (vX.Y.Z)`, with no due date, as listed in the [roadmap](scrum.md#roadmap). Phase 1 holds the pull requests that set up the project.
 
 **Views** (filters and visible fields already set by API):
 

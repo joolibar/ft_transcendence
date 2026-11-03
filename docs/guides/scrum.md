@@ -18,7 +18,7 @@ Everybody is a developer: the PO, PM and Tech Lead also take issues.
 ## How the backlog is organised
 
 ```
-Phase (milestone)        Phase 3 — Places and friends (v0.3.0)
+Phase (milestone)        Phase 3 — Social core (v0.3.0)
  └─ Epic (issue + label `epic`)      Epic: Profiles, friends and messages
      └─ Issue (sub-issue)            Send and accept friend requests
          └─ Pull request             feat(friends): add friend requests  (Closes #NN)
@@ -26,23 +26,30 @@ Phase (milestone)        Phase 3 — Places and friends (v0.3.0)
 
 - **Phases** are GitHub milestones. Each one ends with an internal demo and a release (`v0.<phase>.0`, see [ADR 0005](../decisions/0005-releases-and-versioning.md)); the last one is `v1.0.0` for the evaluation. Phases are not tied to dates: a phase ends when its scope is done.
 - **Epics** are large pieces of work, usually one per subject module, labelled `epic`. They are never worked on directly: they are split into sub-issues, and the board shows their progress from them. Create them with the **Epic** issue template.
-- **Issues** are the work itself. Each one fits in a sprint, has acceptance criteria, belongs to an epic (set its parent in the issue sidebar) and to the epic's milestone.
+- **Issues** are the work itself. Each one fits in a sprint, has acceptance criteria and belongs to an epic (set its parent in the issue sidebar).
+- **Milestones:** an issue's milestone is the phase in which it is done; an epic's milestone is the phase in which it closes. So an epic can have sub-issues in earlier phases: the user management epic closes in phase 3, but sign up and log in is in phase 2.
+- **Spikes** (label `spike`) are timeboxed research for the most uncertain work. They end in a decision written as an ADR and in new issues, never in production code.
 - **Pull requests** close issues with `Closes #NN` in their description.
 
 ## Roadmap
 
-Each phase is a milestone and ends with a release. The order follows dependencies: accounts and data first, then the features that use them, the AI that needs group plans and history, and the bonus modules last so they can be cut without hurting the core. Reviewed at the end of every phase ([ADR 0007](../decisions/0007-planning-with-scrum.md)).
+Each phase is a milestone of one or two sprints and ends with a demo and a release. The order follows four principles, explained in [ADR 0008](../decisions/0008-roadmap-in-vertical-slices.md): **risk first** (spikes on the uncertain work), **vertical slices** (every phase adds something a user can do), **core points first** (the 14 the subject requires before any bonus) and **small phases**.
 
-| Phase                        | Release  | Epics                                                                                                                          |
-| ---------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| 1 — Project setup            | `v0.1.0` | Monorepo, Docker, CI, branch rules, security and documentation (done without epics)                                            |
-| 2 — Foundations              | `v0.2.0` | Mandatory subject requirements (#25), user management (#26), data model (#27), design system and layout (#28), languages (#29) |
-| 3 — Places and friends       | `v0.3.0` | Places, reviews and collections (#30), profiles, friends and messages (#31), advanced search (#32), photos (#33)               |
-| 4 — Group plans in real time | `v0.4.0` | Group plans with live voting and chat (#34), sign in with Google and 42 (#35)                                                  |
-| 5 — AI                       | `v0.5.0` | Group recommendations with machine learning (#36), streamed explanations from the LLM (#37)                                    |
-| 6 — Bonus and polish         | `v1.0.0` | Accessibility (#38), GDPR (#39), gamification (#40), public API (#41); the evaluation release                                  |
+| Phase                | Release  | Sprints | Demo                                                               | Epics and key issues                                                                                                                       | Core points |
+| -------------------- | -------- | ------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| 1 — Project setup    | `v0.1.0` | —       | `make` starts everything                                           | Monorepo, Docker, CI, rules, security, docs                                                                                                | —           |
+| 2 — Walking skeleton | `v0.2.0` | 1       | Sign up, log in and save a place, in three languages               | Data model (#27), languages (#29); issues: sign-up (#18), first places slice (#44), layout (#21), legal pages (#16, #17), validation (#19) | 3           |
+| 3 — Social core      | `v0.3.0` | 2       | Reviews, profiles, friends, messages, sign in with 42 and Google   | User management (#26), places and reviews (#30), profiles, friends and messages (#31), OAuth (#35); AI spikes (#45, #46)                   | 8           |
+| 4 — Group plans      | `v0.4.0` | 2       | A group votes and chats live; the LLM explains each place          | Group plans with live voting and chat (#34), LLM explanations (#37)                                                                        | 12          |
+| 5 — Recommendations  | `v0.5.0` | 1–2     | The group gets suggestions from the model                          | Group recommendations with machine learning (#36)                                                                                          | 14          |
+| 6 — Bonus            | `v0.6.0` | 2       | Search, photos, gamification, data export and deletion, public API | Search (#32), photos (#33), gamification (#40), GDPR (#39), public API (#41), design system completion (#28)                               | +5 bonus    |
+| 7 — Evaluation       | `v1.0.0` | 1       | The evaluation, rehearsed                                          | Accessibility audit (#38), mandatory requirements (#25), rehearsal and bug bash (#47). No new features                                     | —           |
 
-Accessibility is planned in phase 6 for its final audit, but every screen follows it from phase 2 (see the Definition of Done).
+**Five people, three streams.** Each phase is planned so that about three lines of work run in parallel, for example in phase 3: accounts and OAuth, places and reviews, friends and messages plus the spikes.
+
+**Without a date yet**, the plan needs about 10 sprints (five months). When the evaluation date is known, the PM maps phases to sprints; with less time, phase 6 shrinks in the order the README gives.
+
+Accessibility and the three languages are not left for the end: the Definition of Done applies them to every screen from phase 2, and phase 7 only audits them.
 
 ## Sprints
 
