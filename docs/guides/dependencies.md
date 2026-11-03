@@ -34,6 +34,21 @@ Updates are done by a team member, never by a bot (see [ADR 0004](../decisions/0
 4. Run everything: `pnpm lint && pnpm typecheck && pnpm test && pnpm build && make re`.
 5. Open the PR listing what changed and anything that needed fixing.
 
+## Security alerts and overrides
+
+Two things watch the dependencies:
+
+- **Dependabot alerts** (Security tab on GitHub) report known vulnerabilities in what is already in `develop`. They never open pull requests: a team member fixes each alert in a `chore/` branch.
+- The **`Dependency review`** check blocks a pull request that adds or updates a dependency with a known vulnerability of moderate severity or higher. Choose another version or another package instead.
+
+`pnpm audit` shows the same information locally.
+
+When the vulnerable package is not ours but a dependency of a dependency, and its parent has not released a fix yet, force the patched version with an entry under `overrides` in [`pnpm-workspace.yaml`](../../pnpm-workspace.yaml). Every entry needs a comment with the advisory and who uses the package, and must be removed once the parent depends on a fixed version. After adding one, check that the tools using that package still work (for example, that `pnpm lint` still reports errors in a file with a mistake).
+
+| Override    | Advisory                                                                 | Used by | Remove when                      |
+| ----------- | ------------------------------------------------------------------------ | ------- | -------------------------------- |
+| `minimatch` | [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249) | ESLint  | ESLint depends on `minimatch` 11 |
+
 ## Runtime versions
 
 Node, pnpm, PostgreSQL and nginx are pinned to **exact** versions, so every computer, the CI and the evaluation run the same thing. A tag like `node:24` moves every time a new release comes out: two people building a week apart would get different versions, and the bugs that causes look like "it works on my machine".

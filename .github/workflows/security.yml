@@ -1,0 +1,27 @@
+name: Security
+
+# Checks about the safety of what a pull request brings in.
+# CodeQL code scanning runs separately, configured in the repository settings
+# (see docs/guides/github-setup.md).
+on:
+  pull_request:
+
+concurrency:
+  group: security-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    name: Dependency review
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Fails when the pull request adds or updates a dependency with a known
+      # vulnerability of moderate severity or higher.
+      - uses: actions/dependency-review-action@v5
+        with:
+          fail-on-severity: moderate
+          comment-summary-in-pr: never
