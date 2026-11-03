@@ -28,6 +28,8 @@ Phase (milestone)        Phase 3 — Social core (v0.3.0)
 - **Epics** are large pieces of work, usually one per subject module, labelled `epic`. They are never worked on directly: they are split into sub-issues, and the board shows their progress from them. Create them with the **Epic** issue template.
 - **Issues** are the work itself. Each one fits in a sprint, has acceptance criteria and belongs to an epic (set its parent in the issue sidebar).
 - **Milestones:** an issue's milestone is the phase in which it is done; an epic's milestone is the phase in which it closes. So an epic can have sub-issues in earlier phases: the user management epic closes in phase 3, but sign up and log in is in phase 2.
+- **Refinement depth:** issues of the current and the next phase have full acceptance criteria and are ready to estimate. Later phases also have their issues, so the scope and the epics' progress are visible from the start, but they are refined again before their phase: what we learn while building changes them.
+- **Estimates** are not written in advance: the team sets them together at planning poker (see [Estimation](#estimation)).
 - **Spikes** (label `spike`) are timeboxed research for the most uncertain work. They end in a decision written as an ADR and in new issues, never in production code.
 - **Pull requests** close issues with `Closes #NN` in their description.
 
@@ -46,6 +48,8 @@ Each phase is a milestone of one or two sprints and ends with a demo and a relea
 | 7 — Evaluation       | `v1.0.0` | 1       | The evaluation, rehearsed                                          | Accessibility audit (#38), mandatory requirements (#25), rehearsal and bug bash (#47). No new features                                                                                                                            | —           |
 
 **Design runs one phase ahead.** The product brief's phase 0 (research, user flows, wireframes, design system and prototype) does not end: the screens of the next phase are designed and tested in Figma while the current one is built, and an issue with a screen is only **Ready** when its design is (Definition of Ready).
+
+This work lives in the **UX/UI design and prototype** epic (#66). Its sub-issues are titled `Design: …`, labelled `design` and assigned to the PO, and each one sits in the milestone of the phase **during** which it is done, one phase before the screens are built: the phase 3 screens are a phase 2 issue. The design of the phase 2 screens (#70) is the exception: it has to be finished before the first sprint planning, or sprint 1 starts with the issues that have no screen (data model, PostGIS, the OpenStreetMap import, languages, accessibility checks).
 
 **The product brief** is the source of the product's scope and its MoSCoW priorities. Its Must items are epics or issues on the board; its Should items are in phase 6; its Could items stay out until there is time.
 
