@@ -1,7 +1,7 @@
 # Build context: repository root (see docker-compose.yml).
 # Stage 1 builds the React app; stage 2 serves it with nginx over HTTPS.
 
-FROM node:24.22.2-alpine3.24 AS build
+FROM node:24.22.2-trixie-slim AS build
 RUN npm install --global pnpm@12.9.1
 WORKDIR /app
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json tsconfig.base.json ./

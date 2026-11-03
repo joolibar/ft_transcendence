@@ -74,6 +74,10 @@ The repository is under `C:\` or `/mnt/c/`. Clone it again inside the WSL2 home 
 
 The file has Windows line endings (CRLF). `.gitattributes` prevents this for files Git checks out, so it usually means the clone was made from Windows instead of WSL2, or an editor saved the file as CRLF. Clone again inside WSL2, or run `git add --renormalize . && git status` to see which files changed.
 
+## The database logs "collation version mismatch"
+
+The database volume was created with a different base image (for example before the move to Debian in [ADR 0006](../decisions/0006-debian-base-images.md)). Text indexes may be in the wrong order. With no data to keep, recreate it: `make clean && make`.
+
 ## Start again from scratch
 
 ```bash
