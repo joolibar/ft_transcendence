@@ -76,7 +76,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for hot-reload development, branch and co
 
 We work in **Scrum** with two-week sprints. The process (roles, events, Definition of Ready and Done, estimation) is in the [Scrum guide](docs/guides/scrum.md), and the reasons in [ADR 0007](docs/decisions/0007-planning-with-scrum.md).
 
-- **Board:** the [Miga GitHub Project](https://github.com/users/joolibar/projects/7), with views for the current sprint, the backlog, epics, the roadmap and progress per module.
+- **Board:** the [Miga GitHub Project](https://github.com/users/joolibar/projects/7), with four views: the board, the backlog, the epics (progress per module and phase) and each person's work.
 - **Planning:** phases (milestones, each ending in a release) → epics (one per subject module) → issues → pull requests. See the [roadmap](docs/guides/scrum.md#roadmap).
 - **Workflow:** feature branches → pull request into `develop` → review + CI → merge; a release to `main` at the end of each phase. See the [workflow guide](docs/guides/workflow.md).
 - **Design:** Figma (wireframes and the Miga design system).

@@ -164,18 +164,14 @@ GitHub's own fields are also used: `Milestone` (the phase), `Parent issue` and `
 
 **Milestones** (Issues → Milestones): one per phase, `Phase N — Name (vX.Y.Z)`, with no due date, as listed in the [roadmap](scrum.md#roadmap). Phase 1 holds the pull requests that set up the project.
 
-**Views** (filters and visible fields already set by API):
+**Views** (filters and visible fields already set by API). We keep only four while the team learns the board:
 
-| View           | Layout  | Filter                        | Set by hand                                                              |
-| -------------- | ------- | ----------------------------- | ------------------------------------------------------------------------ |
-| Board          | Board   | `-label:epic`                 | Column limit 1 per team member on **In progress** (column ⋯ → Set limit) |
-| Current sprint | Board   | `sprint:@current -label:epic` | Same column limit                                                        |
-| Backlog        | Table   | `-label:epic -status:Done`    | Group by `Priority`; manual order (the PO drags rows)                    |
-| Epics          | Table   | `label:epic`                  | Group by `Milestone`                                                     |
-| Roadmap        | Roadmap | `-label:epic`                 | Date fields: `Sprint`; markers: milestones; zoom: quarter                |
-| By module      | Table   | `-label:epic`                 | Group by `Module`, show the sum of `Estimate`                            |
-| In review      | Table   | `status:"In review"`          | Sort by `Updated`, oldest first                                          |
-| My work        | Table   | `assignee:@me -status:Done`   | Sort by `Priority`                                                       |
+| View    | Layout | Filter                      | Visible fields                                           | Set by hand                                                                  |
+| ------- | ------ | --------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Board   | Board  | `-label:epic`               | Assignees, Priority                                      | Column limit of 5 (one per member) on **In progress** (column ⋯ → Set limit) |
+| Backlog | Table  | `-label:epic -status:Done`  | Status, Priority, Estimate, Sprint, Milestone, Assignees | Group by `Milestone`; manual order inside each group (the PO drags rows)     |
+| Epics   | Table  | `label:epic`                | Sub-issues progress, Module, Milestone                   | Group by `Milestone`                                                         |
+| My work | Table  | `assignee:@me -status:Done` | Status, Priority, Sprint                                 | Sort by `Priority`                                                           |
 
 **Workflows** (⋯ → Workflows): GitHub's built-in automations move the cards, so no GitHub Actions are needed for the board. The API can list them but not turn them on, so set them by hand:
 

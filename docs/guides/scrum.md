@@ -120,24 +120,22 @@ Inside the same priority, the PO orders the **Backlog** view by dragging rows: h
 
 - **Pull, do not push:** when you finish something, take the highest issue in **Ready** in the current sprint, assign yourself and move it to **In progress**.
 - **Limit work in progress:** at most one issue **In progress** per person, two if one is blocked. Finishing beats starting.
-- **Reviews first:** before starting new work, check the **In review** view. A PR waiting for days blocks someone else.
+- **Reviews first:** before starting new work, look at the **In review** column. A PR waiting for days blocks someone else.
 - **Blocked:** add the `blocked` label and say in a comment what you are waiting for. The PM follows it up.
 - **Keep it truthful:** the board is the only source of what is going on. If a card is in the wrong column, move it.
 
 ## Board views
 
-| View               | Layout  | Shows                                     | Use it for                                         |
-| ------------------ | ------- | ----------------------------------------- | -------------------------------------------------- |
-| **Board**          | Board   | Every issue and PR, without epics         | The day-to-day view                                |
-| **Current sprint** | Board   | Only the current sprint                   | The daily, and choosing what to do next            |
-| **Backlog**        | Table   | Everything not done, without epics        | Planning and refinement; the PO orders it          |
-| **Epics**          | Table   | Only epics, with their sub-issue progress | Following each module and phase                    |
-| **Roadmap**        | Roadmap | Issues on the sprint timeline             | Seeing what lands when                             |
-| **By module**      | Table   | Issues grouped by subject module          | Checking that every module we claim is progressing |
-| **In review**      | Table   | Items waiting for review                  | Reviewing before starting new work                 |
-| **My work**        | Table   | What is assigned to you and not done      | Your own to-do list                                |
+Four views, one per question. Most of the time you only need the first one.
 
-The filters and visible fields of each view are already set. Grouping, sorting, column limits and the roadmap's date field can only be set in the web interface; [section 8 of the GitHub setup guide](github-setup.md#8-project-board--miga-project) lists them.
+| View        | Layout | Answers                                | Who uses it                                     |
+| ----------- | ------ | -------------------------------------- | ----------------------------------------------- |
+| **Board**   | Board  | What is everyone doing right now?      | Everyone, every day; the daily                  |
+| **Backlog** | Table  | What comes next, and in which order?   | The PO and the team, in planning and refinement |
+| **Epics**   | Table  | How far has each module and phase got? | The PO and the PM; the evaluation               |
+| **My work** | Table  | What do I have to do?                  | Each person                                     |
+
+The filters and visible fields are already set; grouping, sorting and the column limit are set by hand, as listed in [section 8 of the GitHub setup guide](github-setup.md#8-project-board--miga-project). More views (a roadmap, one per module) can be added later, when the team is used to the board and needs them.
 
 ## Phases and releases
 

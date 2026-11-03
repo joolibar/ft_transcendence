@@ -23,7 +23,7 @@ Several people will work on Miga in parallel, from different computers and with 
 
 ## Consequences
 
-- Anyone can answer "what is left for module X?" from the **By module** and **Epics** views, which is also what the evaluation will ask.
+- Anyone can answer "what is left for module X?" from the **Epics** view, which is also what the evaluation will ask.
 - Moving cards depends on discipline: the [Definition of Ready and Done](../guides/scrum.md#definition-of-ready) and the workflows that move cards on merge reduce the manual work, but the PM still checks the board at every daily.
 - Some board settings (grouping, sorting, column limits, workflows) cannot be set through the API and are documented as manual steps in the [GitHub setup guide](../guides/github-setup.md#8-project-board--miga-project).
 - The board is owned by a user, so its access list is separate from the repository's: every new member must be invited to both.
