@@ -8,6 +8,7 @@ The repository rules in [`docs/decisions/`](../decisions/) only protect the proj
 
 | Setting                            | Value                                                            | Why                                          |
 | ---------------------------------- | ---------------------------------------------------------------- | -------------------------------------------- |
+| Visibility                         | **Public** **(required)**                                        | Needed for rulesets on a free plan (below)   |
 | Default branch                     | `develop` **(required)**                                         | PRs open against `develop` by default        |
 | Allow merge commits                | ✅ on                                                            | Used only for release PRs `develop` → `main` |
 | Allow squash merging               | ✅ on, default message **Pull request title and commit details** | Feature PRs become one clean commit          |
@@ -16,7 +17,9 @@ The repository rules in [`docs/decisions/`](../decisions/) only protect the proj
 
 ## 2. Branch rulesets — Settings → Rules → Rulesets **(required)**
 
-> **Plan requirement:** GitHub only enforces rulesets on **public** repositories or on private repositories owned by a **GitHub Pro** account (free for students with the [GitHub Student Developer Pack](https://education.github.com/pack)). On a free plan with a private repository, the API answers "Upgrade to GitHub Pro or make this repository public".
+> **Plan requirement:** GitHub only enforces rulesets on **public** repositories or on private repositories owned by a **GitHub Pro** account. On a free plan with a private repository, the API answers "Upgrade to GitHub Pro or make this repository public".
+>
+> We made the repository public for this reason. Before doing so we checked that the whole history, including the refs GitHub keeps for every pull request, contains no secrets (`.env`, keys, certificates, tokens). Public repositories also get unlimited GitHub Actions minutes and free secret scanning. If it ever goes back to private, the rulesets stop being enforced until the owner has GitHub Pro (free for students with the [GitHub Student Developer Pack](https://education.github.com/pack)).
 
 The two rulesets are stored as code in [`.github/rulesets/`](../../.github/rulesets/), so they can be reviewed in PRs and applied with one command each:
 
@@ -81,11 +84,14 @@ Target: branch `main`. Same as `develop`, except:
 
 ## 5. Security — Settings → Advanced Security
 
-| Setting                           | Value                                         |
-| --------------------------------- | --------------------------------------------- |
-| Dependabot alerts                 | ✅ on (alerts only, no commits)               |
-| Dependabot security updates       | ❌ off (see section 4)                        |
-| Secret scanning / push protection | ✅ on, if available for the repository's plan |
+| Setting                     | Value                                         |
+| --------------------------- | --------------------------------------------- |
+| Dependabot alerts           | ✅ on (alerts only, no commits)               |
+| Dependabot security updates | ❌ off (see section 4)                        |
+| Secret scanning             | ✅ on (free on public repositories)           |
+| Push protection             | ✅ on: a push containing a secret is rejected |
+
+Everything in a public repository can be read by anyone, forever: a secret pushed once must be considered leaked even if the commit is removed. Push protection stops most of them before they reach GitHub; if one gets through, rotate it (change the password or key) first, then remove it.
 
 ## 6. Collaborators — Settings → Collaborators and teams
 

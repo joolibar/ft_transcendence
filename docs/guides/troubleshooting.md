@@ -57,6 +57,20 @@ make clean   # deletes containers, the database volume, certificates and images
 make
 ```
 
+## `git push` is rejected with "Repository rule violations"
+
+You pushed directly to `develop` or `main`. Both are protected: changes only enter through a pull request. Move your commits to a new branch and open a PR:
+
+```bash
+git switch -c feature/my-change     # the new branch keeps your commits
+git branch -f develop origin/develop # put local develop back where GitHub has it
+git push -u origin feature/my-change
+```
+
+## `git push` is rejected with "Push cannot contain secrets"
+
+GitHub's push protection found a password, key or token in one of your commits. Remove it from the files (it belongs in `.env`, which is ignored), rewrite your local commits so the secret is not in any of them (`git commit --amend` for the last one), and push again. Never use the "allow" link to push it anyway: the repository is public.
+
 ## A PR check fails
 
 | Check             | What to do                                                                                                  |
