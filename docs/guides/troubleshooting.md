@@ -45,10 +45,14 @@ See [release age protection](dependencies.md#release-age-protection).
 
 ## Wrong Node or pnpm version
 
+`pnpm install` stops with "Unsupported engine" when your Node is not the one the project pins. Install it and use it:
+
 ```bash
-nvm use                         # Node version from .nvmrc
-npm install --global pnpm@12    # pnpm version from package.json
+nvm install                          # installs and selects the Node version in .nvmrc
+npm install --global pnpm@12.9.1     # pnpm version from package.json
 ```
+
+Global packages belong to each Node version, so after switching Node with nvm, `pnpm` may be "command not found" until you install it again.
 
 ## Start again from scratch
 

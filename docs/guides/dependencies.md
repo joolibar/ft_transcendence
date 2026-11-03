@@ -33,3 +33,25 @@ Updates are done by a team member, never by a bot (see [ADR 0004](../decisions/0
 3. Update patch and minor versions together. Update **major** versions one per PR, after reading their changelog for breaking changes.
 4. Run everything: `pnpm lint && pnpm typecheck && pnpm test && pnpm build && make re`.
 5. Open the PR listing what changed and anything that needed fixing.
+
+## Runtime versions
+
+Node, pnpm, PostgreSQL and nginx are pinned to **exact** versions, so every computer, the CI and the evaluation run the same thing. A tag like `node:24-alpine` moves every time a new release comes out: two people building a week apart would get different versions, and the bugs that causes look like "it works on my machine".
+
+| What       | Version   | Where it is pinned                                                                                  |
+| ---------- | --------- | --------------------------------------------------------------------------------------------------- |
+| Node       | `24.22.2` | `.nvmrc`, `engines` in `package.json`, `FROM` in `apps/api/Dockerfile` and `infra/nginx/Dockerfile` |
+| pnpm       | `12.9.1`  | `packageManager` in `package.json`, `npm install --global` in both Dockerfiles                      |
+| PostgreSQL | `17.11`   | `docker-compose.yml` and the `Tests` job in `.github/workflows/ci.yml`                              |
+| nginx      | `1.29.8`  | `FROM` in `infra/nginx/Dockerfile`                                                                  |
+
+Docker tags also pin the Alpine Linux release (`-alpine3.24`), because the base system changes too.
+
+`engineStrict: true` in `pnpm-workspace.yaml` makes `pnpm install` stop with "Unsupported engine" when your Node does not match `engines`, instead of failing in strange ways later.
+
+To update one of them, in a `chore/` branch:
+
+1. Find the new exact tag on Docker Hub ([node](https://hub.docker.com/_/node), [postgres](https://hub.docker.com/_/postgres), [nginx](https://hub.docker.com/_/nginx)). Stay on the same major version unless the PR is about upgrading it.
+2. Change it in **every** place listed in the table.
+3. For Node, run `nvm install` (it reads `.nvmrc`) and reinstall pnpm for that Node: `npm install --global pnpm@12.9.1`.
+4. Rebuild from scratch and run everything: `make clean && make`, then `pnpm install && pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
