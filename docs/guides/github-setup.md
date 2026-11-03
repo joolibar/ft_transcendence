@@ -126,6 +126,7 @@ Our labels, which match the branch prefixes and commit types:
 | `blocked`     | `#000000` | Waiting on something else                                   |
 | `epic`        | `#3E4B9E` | Large piece of work, split into sub-issues                  |
 | `spike`       | `#FBCA04` | Timeboxed research that ends in a decision                  |
+| `design`      | `#FF5470` | UX/UI research, flows, screens and prototype                |
 
 GitHub defaults we keep, mostly to say why an issue was closed without changes:
 
@@ -199,7 +200,7 @@ The board, issues and PRs are the evidence for the README's "Project Management"
 
 ## 9. Initial backlog
 
-These issues were created first (#16–#23), together with one epic per subject module (#25–#41) that groups them. The ones marked `mandatory` block the evaluation if missing. Later issues and epics (from #44 on) came from the roadmap and the product brief; the [roadmap](scrum.md#roadmap) lists them by phase, and the board is always the up-to-date list.
+These issues were created first (#16–#23), together with one epic per subject module (#25–#41) that groups them. The ones marked `mandatory` block the evaluation if missing. Later issues and epics (from #44 on) came from the roadmap and the product brief; the [roadmap](scrum.md#roadmap) lists them by phase, and the board is always the up-to-date list. The full backlog was written on 2026-11-03 from the product brief: one sub-issue per piece of work under every epic, plus the design epic (#66).
 
 | Issue                                                           | Labels                                          |
 | --------------------------------------------------------------- | ----------------------------------------------- |
