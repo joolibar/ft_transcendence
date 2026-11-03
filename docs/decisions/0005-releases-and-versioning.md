@@ -5,7 +5,7 @@
 
 ## Context
 
-[ADR 0003](0003-branching-and-commits.md) says that `main` holds the stable, evaluable version and only receives pull requests from `develop`, but not when that happens or how a version is identified. The roadmap is split into phases, each ending with an internal demo. During the evaluation we must be able to say exactly which version is being shown.
+[ADR 0003](0003-branching-and-commits.md) says that `main` holds the stable, evaluable version and only receives pull requests from `develop`, but not when that happens or how a version is identified. The roadmap is split into phases, each ending with an internal demo (the phases are listed in the [Scrum guide](../guides/scrum.md#roadmap)). During the evaluation we must be able to say exactly which version is being shown.
 
 ## Decision
 
