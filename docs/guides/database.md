@@ -29,6 +29,18 @@ In Docker, the API applies pending migrations every time it starts (`prisma migr
 - **One migration per PR** when possible, named after what it does (`add-friendships`, `add-review-rating-index`).
 - **Two people changing the schema at the same time:** whoever merges second updates their branch from `develop` and recreates their migration, so migrations stay in order.
 
+## Sorting text
+
+The database sorts text with the rules of the Debian image ([ADR 0006](../decisions/0006-debian-base-images.md)): accents are handled correctly ("Ávila" comes before "Bilbao"), but the rules are general Unicode, not Spanish. For example "Ñam" comes before "Nube", while in Spanish "Ñ" goes after "N".
+
+When a list must follow a language's rules exactly, sort with an ICU collation, which PostgreSQL includes:
+
+```sql
+SELECT name FROM places ORDER BY name COLLATE "es-x-icu";   -- Nube, Ñam, Oca
+```
+
+Use it in the query (or on the column, if it is always sorted that way), and add a test with accented names.
+
 ## Naming conventions
 
 | Element    | Convention                     | Example                                 |

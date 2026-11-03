@@ -36,7 +36,7 @@ Updates are done by a team member, never by a bot (see [ADR 0004](../decisions/0
 
 ## Runtime versions
 
-Node, pnpm, PostgreSQL and nginx are pinned to **exact** versions, so every computer, the CI and the evaluation run the same thing. A tag like `node:24-alpine` moves every time a new release comes out: two people building a week apart would get different versions, and the bugs that causes look like "it works on my machine".
+Node, pnpm, PostgreSQL and nginx are pinned to **exact** versions, so every computer, the CI and the evaluation run the same thing. A tag like `node:24` moves every time a new release comes out: two people building a week apart would get different versions, and the bugs that causes look like "it works on my machine".
 
 | What       | Version   | Where it is pinned                                                                                  |
 | ---------- | --------- | --------------------------------------------------------------------------------------------------- |
@@ -45,7 +45,7 @@ Node, pnpm, PostgreSQL and nginx are pinned to **exact** versions, so every comp
 | PostgreSQL | `17.11`   | `docker-compose.yml` and the `Tests` job in `.github/workflows/ci.yml`                              |
 | nginx      | `1.29.8`  | `FROM` in `infra/nginx/Dockerfile`                                                                  |
 
-Docker tags also pin the Alpine Linux release (`-alpine3.24`), because the base system changes too.
+Docker tags also pin the Linux release underneath, because the base system changes too: Debian 13 (`-trixie`) for Node and PostgreSQL, Alpine 3.23 (`-alpine3.23`) for nginx. [ADR 0006](../decisions/0006-debian-base-images.md) explains why each one.
 
 `engineStrict: true` in `pnpm-workspace.yaml` makes `pnpm install` stop with "Unsupported engine" when your Node does not match `engines`, instead of failing in strange ways later.
 

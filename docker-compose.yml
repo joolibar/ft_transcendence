@@ -5,7 +5,7 @@ name: miga
 
 services:
   db:
-    image: postgres:17.11-alpine3.24
+    image: postgres:17.11-trixie
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
