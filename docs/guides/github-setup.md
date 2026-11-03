@@ -45,17 +45,18 @@ Target: branch `develop`.
   - Allowed merge methods: **Squash**
 - ✅ Require status checks to pass, with ✅ "Require branches to be up to date before merging", and these checks:
 
-| Check                      | Workflow       | What it verifies                         |
-| -------------------------- | -------------- | ---------------------------------------- |
-| `Format and lint`          | CI             | Prettier and ESLint                      |
-| `API typecheck and build`  | CI             | The API compiles                         |
-| `Web typecheck and build`  | CI             | The web app compiles                     |
-| `Tests`                    | CI             | Every test passes against PostgreSQL     |
-| `Docker images build`      | CI             | `make` would be able to build the images |
-| `PR title`                 | PR conventions | Conventional Commits title               |
-| `Branch name`              | PR conventions | Allowed prefix and target branch         |
-| `Commit authors`           | PR conventions | Team members only, no AI attribution     |
-| `Convention scripts tests` | PR conventions | The tests of the rules above pass        |
+| Check                      | Workflow       | What it verifies                                                  |
+| -------------------------- | -------------- | ----------------------------------------------------------------- |
+| `Format and lint`          | CI             | Prettier and ESLint                                               |
+| `API typecheck and build`  | CI             | The API compiles                                                  |
+| `Web typecheck and build`  | CI             | The web app compiles                                              |
+| `Tests`                    | CI             | Every test passes against PostgreSQL                              |
+| `Docker images build`      | CI             | `make` would be able to build the images                          |
+| `PR title`                 | PR conventions | Conventional Commits title                                        |
+| `Branch name`              | PR conventions | Allowed prefix and target branch                                  |
+| `Commit authors`           | PR conventions | Team members only, no AI attribution                              |
+| `Convention scripts tests` | PR conventions | The tests of the rules above pass                                 |
+| `Dependency review`        | Security       | No new dependency with a known vulnerability (moderate or higher) |
 
 A check only appears in the search box after it has run at least once in the repository.
 

@@ -101,10 +101,11 @@ GitHub's push protection found a password, key or token in one of your commits. 
 
 ## A PR check fails
 
-| Check             | What to do                                                                                                  |
-| ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| `Format and lint` | Run `pnpm format` and `pnpm lint` locally, fix and push                                                     |
-| `PR title`        | Edit the PR title; the check re-runs automatically                                                          |
-| `Branch name`     | Create a correctly named branch from yours and open a new PR                                                |
-| `Commit authors`  | Fix `git config user.email`, then reword the commits (`git commit --amend --reset-author` for the last one) |
-| Others            | Open the check's log on GitHub; the failing step shows the error                                            |
+| Check               | What to do                                                                                                                                                                                   |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Format and lint`   | Run `pnpm format` and `pnpm lint` locally, fix and push                                                                                                                                      |
+| `PR title`          | Edit the PR title; the check re-runs automatically                                                                                                                                           |
+| `Branch name`       | Create a correctly named branch from yours and open a new PR                                                                                                                                 |
+| `Commit authors`    | Fix `git config user.email`, then reword the commits (`git commit --amend --reset-author` for the last one)                                                                                  |
+| `Dependency review` | A dependency you added has a known vulnerability: the check's summary names it. Use a fixed version or another package ([dependencies guide](dependencies.md#security-alerts-and-overrides)) |
+| Others              | Open the check's log on GitHub; the failing step shows the error                                                                                                                             |
