@@ -135,15 +135,39 @@ GitHub defaults we keep, mostly to say why an issue was closed without changes:
 | `wontfix`       | `#FFFFFF` | Closed: we decided not to do it (say why in a comment) |
 | `accessibility` | `#F143AB` | A barrier for people with disabilities (WCAG module)   |
 
-## 8. Project board — Projects → New project → Board
+## 8. Project board — [Miga project](https://github.com/users/joolibar/projects/7)
 
-Columns: **Backlog → Ready → In progress → In review → Done**. Link the repository so new issues land in Backlog. Useful custom fields: `Module` (single select) and `Sprint` (iteration).
+The board is a GitHub Project owned by `joolibar` and linked to the repository. It was created with `gh project` (needs `gh auth refresh -s project`); views can only be changed in the web interface.
+
+**Status** (the columns):
+
+| Column      | Meaning                                          |
+| ----------- | ------------------------------------------------ |
+| Backlog     | Not ready to start: needs details or decisions   |
+| Ready       | Clear acceptance criteria; anyone can pick it up |
+| In progress | Someone is working on it in a branch             |
+| In review   | Pull request open, waiting for review and CI     |
+| Done        | Merged into `develop`                            |
+
+**Other fields:**
+
+| Field      | Type          | Values                                                                                       |
+| ---------- | ------------- | -------------------------------------------------------------------------------------------- |
+| `Module`   | Single select | Each subject module we claim (as in the README), plus `Mandatory` and `Infrastructure`       |
+| `Priority` | Single select | `P0` blocks the evaluation or other work, `P1` needed this phase, `P2` can wait              |
+| `Sprint`   | Iteration     | Two-week sprints starting on Mondays; add new ones in the field settings as the project goes |
+
+**Set by hand in the web interface** (the API cannot do it):
+
+- Open the default view, change its layout to **Board** and name it `Board`. Add a second view with the **Table** layout, grouped by `Module`, to see the progress of each module.
+- **Workflows** (⋯ → Workflows): turn on **Auto-add to project** for `repo:joolibar/ft_transcendence is:issue,pr is:open`, and keep **Item closed** and **Pull request merged** setting the status to `Done`.
+- **Access:** a project owned by a user is separate from the repository. Invite each team member in ⋯ → Settings → Manage access with the **Write** role, or they will not see the board.
 
 The board, issues and PRs are the evidence for the README's "Project Management" section.
 
 ## 9. Initial backlog
 
-Create these issues first. The ones marked `mandatory` block the evaluation if missing.
+These issues were created first (#16–#23). The ones marked `mandatory` block the evaluation if missing.
 
 | Issue                                                           | Labels                                          |
 | --------------------------------------------------------------- | ----------------------------------------------- |
