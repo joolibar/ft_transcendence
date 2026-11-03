@@ -82,7 +82,7 @@ We work in **Scrum** with two-week sprints. The process (roles, events, Definiti
 - **Board:** the [Miga GitHub Project](https://github.com/users/joolibar/projects/7), with four views: the board, the backlog, the epics (progress per module and phase) and each person's work.
 - **Planning:** phases (milestones, each ending in a release) → epics (one per subject module) → issues → pull requests. See the [roadmap](docs/guides/scrum.md#roadmap).
 - **Workflow:** feature branches → pull request into `develop` → review + CI → merge; a release to `main` at the end of each phase. See the [workflow guide](docs/guides/workflow.md).
-- **Design:** Figma (wireframes and the Miga design system).
+- **Design:** two Figma files: _Miga · Design System_ (tokens, components, brand and icons) and _Miga · Product_ (screens and prototype). Product, research and brand documents live in the team's shared drive.
 - **Meetings:** sprint planning, daily, refinement, review and retrospective; days and times _TBD_.
 - **Communication:** _TBD_
 
