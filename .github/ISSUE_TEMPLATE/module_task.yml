@@ -41,3 +41,15 @@ body:
         - [ ] ...
     validations:
       required: true
+  - type: textarea
+    id: quality
+    attributes:
+      label: Tests and documentation
+      description: What the tests must cover and which documentation changes (see docs/guides/testing.md and the Definition of Done).
+      value: |
+        - [ ] Tests for the new behaviour: success, invalid input, not allowed and not found.
+        - [ ] Coverage stays at or above 80 % (`pnpm test:coverage`).
+        - [ ] README · Modules: what this adds to the module, how it is implemented and who built it.
+        - [ ] README · Features List: a row for this feature, with who built it.
+    validations:
+      required: true

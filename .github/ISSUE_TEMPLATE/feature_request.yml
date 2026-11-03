@@ -23,3 +23,16 @@ body:
     attributes:
       label: Design / technical notes
       description: Figma links, affected modules (api, web, shared), open questions.
+  - type: textarea
+    id: quality
+    attributes:
+      label: Tests and documentation
+      description: What the tests must cover and which documentation changes (see docs/guides/testing.md and the Definition of Done).
+      value: |
+        - [ ] API: tests for every route with `app.inject()`: success, invalid input, not allowed and not found.
+        - [ ] Web: tests with Testing Library for what the user sees and does, including loading, empty and error states, and the automatic accessibility check.
+        - [ ] Coverage stays at or above 80 % (`pnpm test:coverage`).
+        - [ ] README · Features List: a row for this feature, with who built it.
+        - [ ] If the data model changes: the migration, README · Database Schema and the diagram in the database guide.
+    validations:
+      required: true

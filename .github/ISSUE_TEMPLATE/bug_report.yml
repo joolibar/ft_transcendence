@@ -27,3 +27,10 @@ body:
     id: context
     attributes:
       label: Screenshots, logs or console errors
+  - type: textarea
+    id: regression
+    attributes:
+      label: Regression test
+      description: The fix comes with a test that fails before it and passes after, so the bug cannot come back unnoticed.
+      value: |
+        - [ ] A test reproduces the bug and passes with the fix.
