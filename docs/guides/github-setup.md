@@ -124,6 +124,7 @@ Our labels, which match the branch prefixes and commit types:
 | `area: api`   | `#C2E0C6` | Backend                                                     |
 | `area: infra` | `#C2E0C6` | Docker, nginx, CI                                           |
 | `blocked`     | `#000000` | Waiting on something else                                   |
+| `epic`        | `#3E4B9E` | Large piece of work, split into sub-issues                  |
 
 GitHub defaults we keep, mostly to say why an issue was closed without changes:
 
@@ -137,7 +138,7 @@ GitHub defaults we keep, mostly to say why an issue was closed without changes:
 
 ## 8. Project board — [Miga project](https://github.com/users/joolibar/projects/7)
 
-The board is a GitHub Project owned by `joolibar` and linked to the repository. It was created with `gh project` (needs `gh auth refresh -s project`); views can only be changed in the web interface.
+The board is a GitHub Project owned by `joolibar` and linked to the repository. How the team uses it is in the [Scrum guide](scrum.md); this section lists how it is configured. Fields and views were created with `gh project` and the GraphQL API (needs `gh auth refresh -s project`).
 
 **Status** (the columns):
 
@@ -149,25 +150,41 @@ The board is a GitHub Project owned by `joolibar` and linked to the repository. 
 | In review   | Pull request open, waiting for review and CI     |
 | Done        | Merged into `develop`                            |
 
-**Other fields:**
+**Custom fields:**
 
-| Field      | Type          | Values                                                                                       |
-| ---------- | ------------- | -------------------------------------------------------------------------------------------- |
-| `Module`   | Single select | Each subject module we claim (as in the README), plus `Mandatory` and `Infrastructure`       |
-| `Priority` | Single select | `P0` blocks the evaluation or other work, `P1` needed this phase, `P2` can wait              |
-| `Sprint`   | Iteration     | Two-week sprints starting on Mondays; add new ones in the field settings as the project goes |
+| Field      | Type          | Values                                                                                                 |
+| ---------- | ------------- | ------------------------------------------------------------------------------------------------------ |
+| `Module`   | Single select | Each subject module we claim (as in the README), plus `Mandatory`, `Core product` and `Infrastructure` |
+| `Priority` | Single select | `P0` blocks the evaluation or other work, `P1` needed this phase, `P2` can wait                        |
+| `Sprint`   | Iteration     | Two weeks, starting on Mondays; add new sprints in the field settings                                  |
+| `Estimate` | Number        | Story points: 1, 2, 3, 5, 8 (13 means split it)                                                        |
 
-**Set by hand in the web interface** (the API cannot do it):
+GitHub's own fields are also used: `Milestone` (the phase), `Parent issue` and `Sub-issues progress` (epics), `Linked pull requests`, `Reviewers`.
 
-- Open the default view, change its layout to **Board** and name it `Board`. Add a second view with the **Table** layout, grouped by `Module`, to see the progress of each module.
-- **Workflows** (⋯ → Workflows): turn on **Auto-add to project** for `repo:joolibar/ft_transcendence is:issue,pr is:open`, and keep **Item closed** and **Pull request merged** setting the status to `Done`.
-- **Access:** a project owned by a user is separate from the repository. Invite each team member in ⋯ → Settings → Manage access with the **Write** role, or they will not see the board.
+**Milestones** (Issues → Milestones): one per phase, `Phase N — Name (vX.Y.Z)`, with no due date. Phase 1 holds the pull requests that set up the project.
+
+**Views** (filters and visible fields already set by API):
+
+| View           | Layout  | Filter                        | Set by hand                                                              |
+| -------------- | ------- | ----------------------------- | ------------------------------------------------------------------------ |
+| Board          | Board   | `-label:epic`                 | Column limit 1 per team member on **In progress** (column ⋯ → Set limit) |
+| Current sprint | Board   | `sprint:@current -label:epic` | Same column limit                                                        |
+| Backlog        | Table   | `-label:epic -status:Done`    | Group by `Priority`; manual order (the PO drags rows)                    |
+| Epics          | Table   | `label:epic`                  | Group by `Milestone`                                                     |
+| Roadmap        | Roadmap | `-label:epic`                 | Date fields: `Sprint`; markers: milestones; zoom: quarter                |
+| By module      | Table   | `-label:epic`                 | Group by `Module`, show the sum of `Estimate`                            |
+| In review      | Table   | `status:"In review"`          | Sort by `Updated`, oldest first                                          |
+| My work        | Table   | `assignee:@me -status:Done`   | Sort by `Priority`                                                       |
+
+**Workflows** (⋯ → Workflows), set by hand: turn on **Auto-add to project** for `is:issue,pr is:open` in this repository and **Auto-add sub-issues to project**; keep **Item closed** and **Pull request merged** setting the status to `Done`; turn on **Item reopened** setting it to `Ready`.
+
+**Access:** a project owned by a user has its own access list. Invite each team member in ⋯ → Settings → Manage access with the **Write** role, or they will not see the board. The project is private; the repository is public.
 
 The board, issues and PRs are the evidence for the README's "Project Management" section.
 
 ## 9. Initial backlog
 
-These issues were created first (#16–#23). The ones marked `mandatory` block the evaluation if missing.
+These issues were created first (#16–#23), together with one epic per subject module (#25–#41) that groups them. The ones marked `mandatory` block the evaluation if missing.
 
 | Issue                                                           | Labels                                          |
 | --------------------------------------------------------------- | ----------------------------------------------- |
