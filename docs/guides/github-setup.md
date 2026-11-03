@@ -39,7 +39,7 @@ Target: branch `develop`.
 - ✅ Restrict deletions
 - ✅ Block force pushes
 - ✅ Require a pull request before merging
-  - Required approvals: **0 while one person works on the repository, 1 as soon as the team joins.** GitHub does not let authors approve their own PRs, so requiring 1 approval with a single member would block every merge. When the second member joins, set `required_approving_review_count` to `1` in both files and apply them.
+  - Required approvals: **1**. GitHub does not let authors approve their own PRs, so every PR needs a teammate. While only one person worked on the repository it was 0, because 1 would have blocked every merge; it became 1 when the team joined.
   - ✅ Dismiss stale pull request approvals when new commits are pushed
   - ✅ Require conversation resolution before merging
   - Allowed merge methods: **Squash**
