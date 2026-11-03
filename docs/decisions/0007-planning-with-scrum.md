@@ -1,6 +1,6 @@
 # 0007 — Planning with Scrum on a GitHub Project
 
-- **Status:** accepted
+- **Status:** accepted; the roadmap order is superseded by [ADR 0008](0008-roadmap-in-vertical-slices.md)
 - **Date:** 2026-11-03
 
 ## Context
