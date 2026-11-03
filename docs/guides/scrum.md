@@ -29,6 +29,21 @@ Phase (milestone)        Phase 3 — Places and friends (v0.3.0)
 - **Issues** are the work itself. Each one fits in a sprint, has acceptance criteria, belongs to an epic (set its parent in the issue sidebar) and to the epic's milestone.
 - **Pull requests** close issues with `Closes #NN` in their description.
 
+## Roadmap
+
+Each phase is a milestone and ends with a release. The order follows dependencies: accounts and data first, then the features that use them, the AI that needs group plans and history, and the bonus modules last so they can be cut without hurting the core. Reviewed at the end of every phase ([ADR 0007](../decisions/0007-planning-with-scrum.md)).
+
+| Phase                        | Release  | Epics                                                                                                                          |
+| ---------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| 1 — Project setup            | `v0.1.0` | Monorepo, Docker, CI, branch rules, security and documentation (done without epics)                                            |
+| 2 — Foundations              | `v0.2.0` | Mandatory subject requirements (#25), user management (#26), data model (#27), design system and layout (#28), languages (#29) |
+| 3 — Places and friends       | `v0.3.0` | Places, reviews and collections (#30), profiles, friends and messages (#31), advanced search (#32), photos (#33)               |
+| 4 — Group plans in real time | `v0.4.0` | Group plans with live voting and chat (#34), sign in with Google and 42 (#35)                                                  |
+| 5 — AI                       | `v0.5.0` | Group recommendations with machine learning (#36), streamed explanations from the LLM (#37)                                    |
+| 6 — Bonus and polish         | `v1.0.0` | Accessibility (#38), GDPR (#39), gamification (#40), public API (#41); the evaluation release                                  |
+
+Accessibility is planned in phase 6 for its final audit, but every screen follows it from phase 2 (see the Definition of Done).
+
 ## Sprints
 
 Sprints last **two weeks** and start on Mondays (field `Sprint` on the board). Add the next sprints in the field's settings when they are planned.
