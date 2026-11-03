@@ -6,14 +6,14 @@ The repository rules in [`docs/decisions/`](../decisions/) only protect the proj
 
 ## 1. General — Settings → General
 
-| Setting                            | Value                                                            | Why                                          |
-| ---------------------------------- | ---------------------------------------------------------------- | -------------------------------------------- |
-| Visibility                         | **Public** **(required)**                                        | Needed for rulesets on a free plan (below)   |
-| Default branch                     | `develop` **(required)**                                         | PRs open against `develop` by default        |
-| Allow merge commits                | ✅ on                                                            | Used only for release PRs `develop` → `main` |
-| Allow squash merging               | ✅ on, default message **Pull request title and commit details** | Feature PRs become one clean commit          |
-| Allow rebase merging               | ❌ off                                                           | One merge style per case, no ambiguity       |
-| Automatically delete head branches | ✅ on                                                            | Merged branches do not pile up               |
+| Setting                            | Value                                         | Why                                                                                                           |
+| ---------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Visibility                         | **Public** **(required)**                     | Needed for rulesets on a free plan (below)                                                                    |
+| Default branch                     | `develop` **(required)**                      | PRs open against `develop` by default                                                                         |
+| Allow merge commits                | ✅ on                                         | Used only for release PRs `develop` → `main`                                                                  |
+| Allow squash merging               | ✅ on, default message **Pull request title** | One clean commit per PR; working commits stay in the PR ([ADR 0010](../decisions/0010-commit-conventions.md)) |
+| Allow rebase merging               | ❌ off                                        | One merge style per case, no ambiguity                                                                        |
+| Automatically delete head branches | ✅ on                                         | Merged branches do not pile up                                                                                |
 
 ## 2. Branch rulesets — Settings → Rules → Rulesets **(required)**
 

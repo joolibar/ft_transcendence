@@ -8,8 +8,8 @@
 
 ## Checklist
 
-- [ ] The branch name follows `feature/`, `fix/`, `chore/` or `docs/` + short description
-- [ ] Commits follow Conventional Commits (`feat:`, `fix:`, `chore:`...)
+- [ ] The branch is `<prefix>/<issue>-<description>` (`feature/`, `fix/`, `chore/` or `docs/`)
+- [ ] The title and the commits follow the commit conventions (`docs/guides/workflow.md#commit-messages`)
 - [ ] New or changed behaviour has tests (see `docs/guides/testing.md`)
 - [ ] `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm build` pass locally
 - [ ] User inputs are validated in both the web app and the API

@@ -1,6 +1,6 @@
 # 0003 — Branches, commits and pull requests
 
-- **Status:** accepted
+- **Status:** accepted; branch names, commit types and scopes extended by [ADR 0010](0010-commit-conventions.md)
 - **Date:** 2026-11-02
 
 ## Context

@@ -18,9 +18,12 @@
     "lint": "pnpm generate && eslint .",
     "typecheck": "pnpm --filter @miga/shared build && pnpm --recursive typecheck",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "hooks:install": "git config core.hooksPath .githooks"
   },
   "devDependencies": {
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
     "@eslint/js": "10.0.1",
     "@vitest/coverage-v8": "5.0.5",
     "eslint": "10.14.0",
