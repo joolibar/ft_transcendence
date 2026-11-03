@@ -43,6 +43,7 @@ Target: branch `develop`.
   - ✅ Dismiss stale pull request approvals when new commits are pushed
   - ✅ Require conversation resolution before merging
   - Allowed merge methods: **Squash**
+- ✅ Require code scanning results: tool **CodeQL**, security alerts **Medium or higher**, alerts **Errors**
 - ✅ Require status checks to pass, with ✅ "Require branches to be up to date before merging", and these checks:
 
 | Check                      | Workflow       | What it verifies                                                  |
@@ -85,12 +86,17 @@ Target: branch `main`. Same as `develop`, except:
 
 ## 5. Security — Settings → Advanced Security
 
-| Setting                     | Value                                         |
-| --------------------------- | --------------------------------------------- |
-| Dependabot alerts           | ✅ on (alerts only, no commits)               |
-| Dependabot security updates | ❌ off (see section 4)                        |
-| Secret scanning             | ✅ on (free on public repositories)           |
-| Push protection             | ✅ on: a push containing a secret is rejected |
+| Setting                                                    | Value                                                                                                           |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Dependabot alerts                                          | ✅ on (alerts only, no commits)                                                                                 |
+| Dependabot security updates                                | ❌ off (see section 4)                                                                                          |
+| Secret scanning                                            | ✅ on (free on public repositories)                                                                             |
+| Push protection                                            | ✅ on: a push containing a secret is rejected                                                                   |
+| Private vulnerability reporting                            | ✅ on: the channel described in [`SECURITY.md`](../../SECURITY.md)                                              |
+| Code scanning (CodeQL)                                     | ✅ on, **Default setup** (JavaScript/TypeScript and GitHub Actions)                                             |
+| Secret scanning: non-provider patterns and validity checks | Not available on our plan (GitHub Secret Protection); the standard secret scanning above covers known providers |
+
+**CodeQL** analyses the code of every pull request and of `develop` looking for security problems: injections, cross-site scripting, unvalidated input, workflows with too many permissions. Its default setup is managed by GitHub, so there is no workflow file in the repository. It shows up in pull requests as the `CodeQL` check, and the rulesets block the merge while a PR has a CodeQL security alert of medium severity or higher (rule **Require code scanning results**). Alerts are listed in **Security → Code scanning**; fix them in a `fix/` branch, or dismiss one only with a written reason when it is a false positive.
 
 Everything in a public repository can be read by anyone, forever: a secret pushed once must be considered leaked even if the commit is removed. Push protection stops most of them before they reach GitHub; if one gets through, rotate it (change the password or key) first, then remove it.
 
