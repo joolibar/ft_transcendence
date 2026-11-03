@@ -45,7 +45,7 @@ Each phase is a milestone of one or two sprints and ends with a demo and a relea
 | 4 — Group plans      | `v0.4.0` | 2       | A group votes and chats live; the LLM explains each place          | Group plans with live voting and chat (#34), LLM explanations (#37)                                                                                                                                                               | 12          |
 | 5 — Recommendations  | `v0.5.0` | 1–2     | The group gets suggestions from the model                          | Group recommendations with machine learning (#36)                                                                                                                                                                                 | 14          |
 | 6 — Bonus            | `v0.6.0` | 2       | Search, photos, gamification, data export and deletion, public API | Search (#32), photos (#33), gamification (#40), GDPR (#39), public API (#41), design system completion (#28), analytics (#55), diary (#56), friends feed (#57)                                                                    | +5 bonus    |
-| 7 — Evaluation       | `v1.0.0` | 1       | The evaluation, rehearsed                                          | Accessibility audit (#38), mandatory requirements (#25), rehearsal and bug bash (#47). No new features                                                                                                                            | —           |
+| 7 — Evaluation       | `v1.0.0` | 1       | The evaluation, rehearsed                                          | Accessibility audit (#38), mandatory requirements (#25), quality, testing and documentation (#150), rehearsal and bug bash (#47). No new features                                                                                 | —           |
 
 **Design runs as its own track, ahead of development** ([ADR 0009](../decisions/0009-design-track-ahead-of-development.md)). Two tracks share the same sprints, goals, reviews and retrospectives:
 
@@ -102,10 +102,10 @@ An issue is **Done** when:
 
 - [ ] Every acceptance criterion is met.
 - [ ] The code is merged into `develop` through a reviewed PR with every check green.
-- [ ] New behaviour has tests, and coverage is still above the minimum.
+- [ ] New behaviour has the tests its issue lists, and coverage is still above the minimum.
 - [ ] Inputs are validated in the web app and in the API.
 - [ ] The interface is usable with the keyboard and works in the three languages, once those modules exist.
-- [ ] The documentation is updated (guides, ADRs, README modules table if it changes).
+- [ ] The documentation is updated: README · Features List (with who built it), README · Modules and Database Schema when they change, and the guides or ADRs it affects. Each issue lists them in its "Tests and documentation" section.
 - [ ] No errors or warnings in the browser console.
 
 GitHub moves the card to Done when the PR that closes the issue is merged.
