@@ -173,17 +173,21 @@ GitHub's own fields are also used: `Milestone` (the phase), `Parent issue` and `
 | Epics   | Table  | `label:epic`                | Sub-issues progress, Module, Milestone                   | Group by `Milestone`                                                         |
 | My work | Table  | `assignee:@me -status:Done` | Status, Priority, Sprint                                 | Sort by `Priority`                                                           |
 
-**Workflows** (⋯ → Workflows): GitHub's built-in automations move the cards, so no GitHub Actions are needed for the board. The API can list them but not turn them on, so set them by hand:
+**Workflows** (⋯ → Workflows): GitHub's built-in automations move the cards, so no GitHub Actions are needed for the board. The API can list them but not turn them on, so they are set by hand. All of them are configured as follows:
 
-| Workflow                       | Setting                                                             |
-| ------------------------------ | ------------------------------------------------------------------- |
-| Auto-add to project            | Create it for this repository with the filter `is:issue,pr is:open` |
-| Auto-add sub-issues to project | On (already on)                                                     |
-| Item added to project          | On, status `Backlog`                                                |
-| Pull request linked to issue   | On, status `In review`                                              |
-| Item closed                    | On, status `Done`                                                   |
-| Pull request merged            | On, status `Done`                                                   |
-| Auto-close issue               | Off: an issue is closed by its PR, not by moving its card           |
+| Workflow                       | Setting                                           | Why                                                                                                                                 |
+| ------------------------------ | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Auto-add to project            | On, filter `is:issue,pr is:open`, this repository | Every new issue and PR lands on the board                                                                                           |
+| Auto-add sub-issues to project | On                                                | Issues created under an epic appear too                                                                                             |
+| Item added to project          | On, status `Backlog`                              | New work starts unrefined                                                                                                           |
+| Pull request linked to issue   | On, status `In review`                            | Opening the PR moves its issue                                                                                                      |
+| Code changes requested         | On, status `In progress`                          | The work goes back to its author                                                                                                    |
+| Pull request merged            | On, status `Done`                                 |                                                                                                                                     |
+| Item closed                    | On, status `Done`                                 |                                                                                                                                     |
+| Item reopened                  | On, status `Ready`                                | It was not really done; someone picks it up again                                                                                   |
+| Auto-archive items             | On, filter `is:closed updated:<@today-14d`        | Keeps **Done** short; items closed this sprint stay for the review. Archived items are not deleted and still count in epic progress |
+| Code review approved           | Off                                               | There is no "approved" column: the author merges, and _Pull request merged_ moves the card                                          |
+| Auto-close issue               | Off (GitHub shows it with a red icon)             | An issue is closed by its PR, never by moving its card                                                                              |
 
 Moving a card to **In progress** stays manual: it is the signal that someone has taken the issue.
 
