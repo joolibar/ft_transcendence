@@ -18,9 +18,9 @@ How a piece of work travels from an idea to the version that is evaluated. The r
 
 ## 1. Start from an issue
 
-Every piece of work starts as a GitHub issue, created with one of the templates (feature, bug or subject module task). The issue says **what** and **why**, and has acceptance criteria a reviewer can check.
+Every piece of work starts as a GitHub issue, created with one of the templates (feature, bug or subject module task). The issue says **what** and **why**, and has acceptance criteria a reviewer can check. It belongs to an epic and a phase; how issues are planned into sprints is in the [Scrum guide](scrum.md).
 
-- Assign it to yourself and move it to **In progress** on the project board.
+- Take it from **Ready** in the current sprint, assign it to yourself and move it to **In progress** on the project board.
 - One issue = one branch = one pull request. If the work turns out to be bigger, split the issue.
 - Small fixes found along the way that are unrelated to your issue get their own issue, not a sneaky commit in your branch.
 

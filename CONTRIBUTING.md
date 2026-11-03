@@ -38,6 +38,7 @@ Use **pnpm only**. Do not run `npm install` or `yarn`: mixing package managers b
 | Preparing your computer (macOS, Linux, Windows) | [docs/guides/setup.md](docs/guides/setup.md)                     |
 | How the project is built and organised          | [docs/architecture.md](docs/architecture.md)                     |
 | How work flows, from issue to release           | [docs/guides/workflow.md](docs/guides/workflow.md)               |
+| How we plan: sprints, board, estimates          | [docs/guides/scrum.md](docs/guides/scrum.md)                     |
 | Why things are the way they are                 | [docs/decisions/](docs/decisions/)                               |
 | Working with the database                       | [docs/guides/database.md](docs/guides/database.md)               |
 | Writing and running tests                       | [docs/guides/testing.md](docs/guides/testing.md)                 |
