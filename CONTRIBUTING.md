@@ -7,16 +7,19 @@ New to the project? Set up your machine below, then read the [workflow guide](do
 On Linux, the 42 campus computers or Windows, read the [setup guide](docs/guides/setup.md) first: Windows needs WSL2.
 
 1. Install **Docker**, **Node 24.22.2** (`nvm install` reads `.nvmrc`) and **pnpm 12.9.1** (`npm install --global pnpm@12.9.1`). The exact versions are listed in the [dependencies guide](docs/guides/dependencies.md#runtime-versions).
-2. Make sure Git signs your commits with **the email of your GitHub account** (check it in GitHub → Settings → Emails):
+2. Make sure Git writes your commits with **the email of your GitHub account** (check it in GitHub → Settings → Emails):
    ```bash
    git config --global user.name "Your Name"
    git config --global user.email "you@example.com"
    ```
-3. Clone the repo and install dependencies:
+3. Accept the two invitations you received by email: the repository and the [project board](https://github.com/users/joolibar/projects/7) are shared separately.
+4. Clone the repo and install dependencies:
    ```bash
+   git clone git@github.com:joolibar/ft_transcendence.git
+   cd ft_transcendence
    pnpm install
    ```
-4. Run the whole app the way it is evaluated:
+5. Run the whole app the way it is evaluated:
    ```bash
    make
    ```
@@ -85,7 +88,7 @@ Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`. Because PRs 
 ## Pull requests
 
 1. Push your branch and open a PR into `develop`, filling in the template.
-2. CI must be green: PR title, branch name, commit authors, format and lint, API build, web build, tests, Docker build.
+2. Every check must be green: PR title, branch name, commit authors, format and lint, API build, web build, tests, Docker build, dependency review and CodeQL (the full list is in the [GitHub setup guide](docs/guides/github-setup.md#ruleset-develop)).
 3. At least one teammate approves.
 4. Squash and merge, then delete the branch.
 

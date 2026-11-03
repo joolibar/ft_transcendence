@@ -8,7 +8,7 @@
 
 ## Checklist
 
-- [ ] The branch name follows `feature/`, `fix/` or `chore/` + short description
+- [ ] The branch name follows `feature/`, `fix/`, `chore/` or `docs/` + short description
 - [ ] Commits follow Conventional Commits (`feat:`, `fix:`, `chore:`...)
 - [ ] New or changed behaviour has tests (see `docs/guides/testing.md`)
 - [ ] `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm build` pass locally

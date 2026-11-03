@@ -17,18 +17,21 @@ Saved restaurants usually end up scattered across notes, chats and maps, and whe
 - **AI recommendations:** suggestions based on everyone's taste history, with a natural-language explanation of why each place fits.
 - **Multilingual and accessible** from day one (Spanish, Catalan, English).
 
-> Status: initial project setup. Features are listed as they are planned and will be updated as they are implemented.
+> Status: phase 1 (project setup) is released as `v0.1.0`; phase 2 (walking skeleton) is next. Features are listed as they are planned and will be updated as they are implemented.
 
 ## Instructions
 
 ### Prerequisites
 
-| Tool             | Version | Needed for                     |
-| ---------------- | ------- | ------------------------------ |
-| Docker + Compose | 24+     | Running the project (required) |
-| GNU Make         | any     | Running the project (required) |
-| Node.js          | 24      | Local development only         |
-| pnpm             | 12      | Local development only         |
+| Tool           | Version       | Needed for                     |
+| -------------- | ------------- | ------------------------------ |
+| Docker Engine  | 24+           | Running the project (required) |
+| Docker Compose | v2, 2.20+     | Running the project (required) |
+| GNU Make       | any           | Running the project (required) |
+| Node.js        | 24.22.2 exact | Local development only         |
+| pnpm           | 12.9.1 exact  | Local development only         |
+
+On Linux, the 42 campus computers or Windows (WSL2), see the [setup guide](docs/guides/setup.md).
 
 ### Run the project
 
@@ -102,7 +105,7 @@ The full reasoning is in [docs/decisions/0002-tech-stack.md](docs/decisions/0002
 
 _To be completed as models are added to [`apps/api/prisma/schema.prisma`](apps/api/prisma/schema.prisma)._
 
-Main entities planned: User, DietaryRestriction, Place, Review, List, Friendship, GroupPlan, Notification.
+Main entities planned: User, DietaryRestriction, Place, Review, Collection, Friendship, Message, GroupPlan, Notification.
 
 ## Features List
 
@@ -184,4 +187,5 @@ AI assistants are used as tools; every commit is authored and reviewed by a team
 
 - **Planning:** an AI assistant was used to compare technical stacks, discuss module choices against the subject, and structure the product scope.
 - **Project setup:** an AI assistant generated the initial monorepo skeleton (configuration, Docker Compose, nginx, CI, templates and this README structure). The team reviewed it before building on it.
+- **Documentation and project management:** an AI assistant helped draft the guides and decision records in `docs/` and set up the project board, milestones and initial issues. The team reviewed and edited them.
 - _Add further uses here as the project progresses (which tasks, which parts of the code)._

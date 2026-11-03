@@ -199,7 +199,7 @@ The board, issues and PRs are the evidence for the README's "Project Management"
 
 ## 9. Initial backlog
 
-These issues were created first (#16–#23), together with one epic per subject module (#25–#41) that groups them. The ones marked `mandatory` block the evaluation if missing.
+These issues were created first (#16–#23), together with one epic per subject module (#25–#41) that groups them. The ones marked `mandatory` block the evaluation if missing. Later issues and epics (from #44 on) came from the roadmap and the product brief; the [roadmap](scrum.md#roadmap) lists them by phase, and the board is always the up-to-date list.
 
 | Issue                                                           | Labels                                          |
 | --------------------------------------------------------------- | ----------------------------------------------- |
