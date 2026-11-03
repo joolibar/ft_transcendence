@@ -89,7 +89,7 @@ Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`. Because PRs 
 
 1. Push your branch and open a PR into `develop`, filling in the template.
 2. Every check must be green: PR title, branch name, commit authors, format and lint, API build, web build, tests, Docker build, dependency review and CodeQL (the full list is in the [GitHub setup guide](docs/guides/github-setup.md#ruleset-develop)).
-3. At least one teammate approves.
+3. At least one teammate approves (required from the first development sprint).
 4. Squash and merge, then delete the branch.
 
 ## AI tools
