@@ -54,6 +54,26 @@ npm install --global pnpm@12.9.1     # pnpm version from package.json
 
 Global packages belong to each Node version, so after switching Node with nvm, `pnpm` may be "command not found" until you install it again.
 
+## `permission denied` on `/var/run/docker.sock` (Linux)
+
+Your user is not allowed to use Docker. Run `sudo usermod -aG docker "$USER"`, then log out and in again. On a campus computer without `sudo`, ask the staff; see the [setup guide](setup.md#on-the-42-campus-computers).
+
+## `docker: 'compose' is not a docker command`
+
+Your computer has only the old Compose v1 (`docker-compose`). Install the Compose v2 plugin (`docker-compose-plugin` on Ubuntu, from Docker's own repository); see the [setup guide](setup.md#linux).
+
+## "No space left on device"
+
+Docker images, volumes and build cache take several gigabytes. `docker system df` shows how much; `make clean` removes this project's; `docker builder prune` removes the build cache of every project. On campus, see the [disk quota advice](setup.md#on-the-42-campus-computers).
+
+## Everything is very slow, or hot reload does not work (Windows)
+
+The repository is under `C:\` or `/mnt/c/`. Clone it again inside the WSL2 home (`cd ~ && git clone …`) and work from the Ubuntu terminal; see the [setup guide](setup.md#windows).
+
+## A script fails with `\r: command not found` or `bad interpreter`
+
+The file has Windows line endings (CRLF). `.gitattributes` prevents this for files Git checks out, so it usually means the clone was made from Windows instead of WSL2, or an editor saved the file as CRLF. Clone again inside WSL2, or run `git add --renormalize . && git status` to see which files changed.
+
 ## Start again from scratch
 
 ```bash

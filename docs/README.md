@@ -3,6 +3,7 @@
 | Path                                                     | What it contains                                                           |
 | -------------------------------------------------------- | -------------------------------------------------------------------------- |
 | [`architecture.md`](architecture.md)                     | How the pieces fit together: services, requests, folders and conventions.  |
+| [`guides/setup.md`](guides/setup.md)                     | Preparing a computer on macOS, Linux (and the 42 campus) or Windows.       |
 | [`guides/workflow.md`](guides/workflow.md)               | How work flows: issue, branch, PR, review, merge and release.              |
 | [`decisions/`](decisions/)                               | Architecture Decision Records (ADRs): one file per important decision.     |
 | [`guides/database.md`](guides/database.md)               | Migrations, schema conventions and database commands.                      |
