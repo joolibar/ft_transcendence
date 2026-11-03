@@ -1,0 +1,8 @@
+# Development-only additions, used by `make db`:
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up --detach db
+# Kept out of docker-compose.yml so `make` never needs port 5432 to be free.
+
+services:
+  db:
+    ports:
+      - '127.0.0.1:5432:5432'

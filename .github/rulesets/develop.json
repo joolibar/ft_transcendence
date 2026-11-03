@@ -1,0 +1,92 @@
+{
+  "name": "develop",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/develop"],
+      "exclude": []
+    }
+  },
+  "bypass_actors": [],
+  "rules": [
+    {
+      "type": "deletion"
+    },
+    {
+      "type": "non_fast_forward"
+    },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 0,
+        "dismiss_stale_reviews_on_push": true,
+        "require_code_owner_review": false,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": true,
+        "allowed_merge_methods": ["squash"]
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          {
+            "context": "Format and lint",
+            "integration_id": 15368
+          },
+          {
+            "context": "API typecheck and build",
+            "integration_id": 15368
+          },
+          {
+            "context": "Web typecheck and build",
+            "integration_id": 15368
+          },
+          {
+            "context": "Tests",
+            "integration_id": 15368
+          },
+          {
+            "context": "Docker images build",
+            "integration_id": 15368
+          },
+          {
+            "context": "PR title",
+            "integration_id": 15368
+          },
+          {
+            "context": "Branch name",
+            "integration_id": 15368
+          },
+          {
+            "context": "Commit authors",
+            "integration_id": 15368
+          },
+          {
+            "context": "Convention scripts tests",
+            "integration_id": 15368
+          },
+          {
+            "context": "Dependency review",
+            "integration_id": 15368
+          }
+        ]
+      }
+    },
+    {
+      "type": "code_scanning",
+      "parameters": {
+        "code_scanning_tools": [
+          {
+            "tool": "CodeQL",
+            "security_alerts_threshold": "medium_or_higher",
+            "alerts_threshold": "errors"
+          }
+        ]
+      }
+    }
+  ]
+}

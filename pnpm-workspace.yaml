@@ -7,3 +7,13 @@ allowBuilds:
   '@prisma/engines': true
   esbuild: true
   prisma: true
+
+# Refuse to install with a Node version outside package.json "engines".
+engineStrict: true
+
+# Force patched versions of transitive dependencies that have a known
+# vulnerability and whose parents have not updated yet. Remove each entry once
+# the parent package depends on a fixed version (see docs/guides/dependencies.md).
+overrides:
+  # GHSA-g3hv-75wg-m249, used only by ESLint. ESLint 10.14 still asks for ^10.
+  minimatch: '>=11.0.1 <12'

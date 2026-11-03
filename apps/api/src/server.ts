@@ -5,9 +5,14 @@ const env = loadEnv();
 const app = await buildApp(env);
 
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
-  process.on(signal, async () => {
-    await app.close();
-    process.exit(0);
+  process.on(signal, () => {
+    app.close().then(
+      () => process.exit(0),
+      (error: unknown) => {
+        app.log.error(error, 'Error while shutting down');
+        process.exit(1);
+      },
+    );
   });
 }
 

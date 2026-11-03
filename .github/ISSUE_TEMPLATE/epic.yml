@@ -1,0 +1,34 @@
+name: Epic
+description: A large piece of work, usually a subject module, split into sub-issues
+labels: [epic]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Epics are not worked on directly. After creating it, set its milestone (phase) and add it to the board with `Module` and `Priority`. Then create its issues and add them as sub-issues. See docs/guides/scrum.md.
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What users will be able to do when it is finished, and which subject module it covers.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: The main pieces, as a list. Each one will become one or more sub-issues.
+      placeholder: |
+        - ...
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: How we know the epic is finished.
+      placeholder: |
+        - [ ] Every sub-issue is closed.
+        - [ ] ...
+    validations:
+      required: true

@@ -9,9 +9,16 @@ export function App() {
 
   useEffect(() => {
     fetch('/api/health')
-      .then((response) => response.json())
-      .then((data) => setHealth(healthResponseSchema.parse(data)))
-      .catch(() => setFailed(true));
+      .then((response) => {
+        if (!response.ok) throw new Error(`Health check failed with ${String(response.status)}`);
+        return response.json();
+      })
+      .then((data) => {
+        setHealth(healthResponseSchema.parse(data));
+      })
+      .catch(() => {
+        setFailed(true);
+      });
   }, []);
 
   const statusText = failed
