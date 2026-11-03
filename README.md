@@ -1,6 +1,4 @@
-_This project has been created as part of the 42 curriculum by joolibar._
-
-<!-- TODO: add every team member's 42 login to the line above, e.g. "by joolibar, login2, login3". -->
+_This project has been created as part of the 42 curriculum by joolibar, carlopez, shimi-be, mcullell, lbellmas._
 
 # Miga
 
@@ -62,15 +60,17 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for hot-reload development, branch and co
 
 ## Team Information
 
-<!-- TODO: one row per member. Roles defined by the subject: PO, PM, Tech Lead, Developers. -->
+<!-- TODO: assign Project Manager and Tech Lead at the first sprint planning, and fill in responsibilities. -->
 
-| Member   | Role(s)                  | Responsibilities                                            |
-| -------- | ------------------------ | ----------------------------------------------------------- |
-| joolibar | Product Owner, Developer | Product vision, UX/UI and design system, backlog priorities |
-| _TBD_    | Project Manager          |                                                             |
-| _TBD_    | Tech Lead                |                                                             |
-| _TBD_    | Developer                |                                                             |
-| _TBD_    | Developer                |                                                             |
+| Member (42 login) | GitHub      | Role(s)                  | Responsibilities                                            |
+| ----------------- | ----------- | ------------------------ | ----------------------------------------------------------- |
+| joolibar          | `joolibar`  | Product Owner, Developer | Product vision, UX/UI and design system, backlog priorities |
+| carlopez          | `carlopezc` | Developer                | _TBD_                                                       |
+| shimi-be          | `shimmi134` | Developer                | _TBD_                                                       |
+| mcullell          | `mcullell`  | Developer                | _TBD_                                                       |
+| lbellmas          | `lbellmas`  | Developer                | _TBD_                                                       |
+
+Project Manager and Tech Lead are chosen among the members at the first sprint planning; both keep working as developers.
 
 ## Project Management
 
