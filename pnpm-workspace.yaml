@@ -7,3 +7,6 @@ allowBuilds:
   '@prisma/engines': true
   esbuild: true
   prisma: true
+
+# Refuse to install with a Node version outside package.json "engines".
+engineStrict: true

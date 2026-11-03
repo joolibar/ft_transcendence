@@ -59,7 +59,7 @@ jobs:
     # A throwaway PostgreSQL so API tests run against a real database.
     services:
       postgres:
-        image: postgres:17-alpine
+        image: postgres:17.11-alpine3.24
         env:
           POSTGRES_USER: miga
           POSTGRES_PASSWORD: miga

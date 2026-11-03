@@ -4,7 +4,7 @@ New to the project? Set up your machine below, then read the [workflow guide](do
 
 ## Setup
 
-1. Install **Docker**, **Node 24** (`nvm use` reads `.nvmrc`) and **pnpm 12** (`npm install --global pnpm@12`).
+1. Install **Docker**, **Node 24.22.2** (`nvm install` reads `.nvmrc`) and **pnpm 12.9.1** (`npm install --global pnpm@12.9.1`). The exact versions are listed in the [dependencies guide](docs/guides/dependencies.md#runtime-versions).
 2. Make sure Git signs your commits with **the email of your GitHub account** (check it in GitHub → Settings → Emails):
    ```bash
    git config --global user.name "Your Name"
