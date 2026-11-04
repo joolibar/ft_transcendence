@@ -103,6 +103,7 @@ An issue is **Done** when:
 - [ ] Every acceptance criterion is met.
 - [ ] The code is merged into `develop` through a reviewed PR with every check green.
 - [ ] New behaviour has the tests its issue lists, and coverage is still above the minimum.
+- [ ] A new CI job or Docker service is wired into CI, as the [testing guide](testing.md#keeping-ci-up-to-date) describes.
 - [ ] Inputs are validated in the web app and in the API.
 - [ ] The interface is usable with the keyboard and works in the three languages, once those modules exist.
 - [ ] The documentation is updated: README · Features List (with who built it), README · Modules and Database Schema when they change, and the guides or ADRs it affects. Each issue lists them in its "Tests and documentation" section.
@@ -163,4 +164,4 @@ The filters and visible fields are already set; grouping, sorting and the column
 1. During a phase, sprints follow one another and issues of that milestone get done.
 2. When every issue of the milestone is closed, the sprint review becomes the **phase demo**, on a fresh clone.
 3. The release follows [workflow step 8](workflow.md#8-release-to-main), and the milestone is closed.
-4. The retrospective of that sprint also looks back at the whole phase.
+4. The retrospective of that sprint also looks back at the whole phase. It includes a review of the CI pipeline (duration, flaky tests, missing checks, coverage minimum), as the [testing guide](testing.md#keeping-ci-up-to-date) describes.
