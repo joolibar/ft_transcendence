@@ -25,7 +25,7 @@ pnpm does not run install scripts of dependencies unless they are listed under `
 
 Updates are done by a team member, never by a bot (see [ADR 0004](../decisions/0004-commit-authorship.md)). Once a month, or when GitHub shows a Dependabot security alert:
 
-1. Create a branch: `chore/update-dependencies`.
+1. Open an issue for the update and create its branch: `chore/<issue>-update-dependencies` (for example `chore/212-update-dependencies`).
 2. See what is outdated:
    ```bash
    pnpm outdated --recursive
@@ -38,7 +38,7 @@ Updates are done by a team member, never by a bot (see [ADR 0004](../decisions/0
 
 Two things watch the dependencies:
 
-- **Dependabot alerts** (Security tab on GitHub) report known vulnerabilities in what is already in `develop`. They never open pull requests: a team member fixes each alert in a `chore/` branch.
+- **Dependabot alerts** (Security tab on GitHub) report known vulnerabilities in what is already in `develop`. They never open pull requests: a team member fixes each alert in a `chore/<issue>-…` branch, with its own issue.
 - The **`Dependency review`** check blocks a pull request that adds or updates a dependency with a known vulnerability of moderate severity or higher. Choose another version or another package instead.
 
 `pnpm audit` shows the same information locally.
@@ -64,7 +64,7 @@ Docker tags also pin the Linux release underneath, because the base system chang
 
 `engineStrict: true` in `pnpm-workspace.yaml` makes `pnpm install` stop with "Unsupported engine" when your Node does not match `engines`, instead of failing in strange ways later.
 
-To update one of them, in a `chore/` branch:
+To update one of them, open an issue and work in its `chore/<issue>-…` branch:
 
 1. Find the new exact tag on Docker Hub ([node](https://hub.docker.com/_/node), [postgres](https://hub.docker.com/_/postgres), [nginx](https://hub.docker.com/_/nginx)). Stay on the same major version unless the PR is about upgrading it.
 2. Change it in **every** place listed in the table.
