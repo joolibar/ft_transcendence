@@ -132,7 +132,7 @@ _Planned selection from the product brief, to be confirmed by the team. Who work
 | AI              | Recommendation system using machine learning      | Major | 2      | Place suggestions for a group and "Surprise me"        |
 | AI              | Complete LLM system interface                     | Major | 2      | Streamed explanation of every suggestion               |
 | Web             | Use an ORM for the database                       | Minor | 1      | Prisma                                                 |
-| User Management | Remote authentication with OAuth 2.0              | Minor | 1      | Sign in with Google and with 42                        |
+| User Management | Remote authentication with OAuth 2.0              | Minor | 1      | Sign in with Google                                    |
 
 ### Bonus — 10 points planned
 
