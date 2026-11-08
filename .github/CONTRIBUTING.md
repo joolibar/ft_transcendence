@@ -1,12 +1,12 @@
 # Contributing to Miga
 
-New to the project? Set up your machine below, then read the [workflow guide](docs/guides/workflow.md): it walks through a task from issue to release.
+New to the project? Set up your machine below, then read the [workflow guide](../docs/guides/workflow.md): it walks through a task from issue to release.
 
 ## Setup
 
-On Linux, the 42 campus computers or Windows, read the [setup guide](docs/guides/setup.md) first: Windows needs WSL2.
+On Linux, the 42 campus computers or Windows, read the [setup guide](../docs/guides/setup.md) first: Windows needs WSL2.
 
-1. Install **Docker**, **Node 24.22.2** (`nvm install` reads `.nvmrc`) and **pnpm 12.9.1** (`npm install --global pnpm@12.9.1`). The exact versions are listed in the [dependencies guide](docs/guides/dependencies.md#runtime-versions).
+1. Install **Docker**, **Node 24.22.2** (`nvm install` reads `.nvmrc`) and **pnpm 12.9.1** (`npm install --global pnpm@12.9.1`). The exact versions are listed in the [dependencies guide](../docs/guides/dependencies.md#runtime-versions).
 2. Make sure Git writes your commits with **the email of your GitHub account** (check it in GitHub → Settings → Emails):
    ```bash
    git config --global user.name "Your Name"
@@ -36,19 +36,19 @@ Use **pnpm only**. Do not run `npm install` or `yarn`: mixing package managers b
 
 ## Documentation map
 
-| Need                                            | Read                                                             |
-| ----------------------------------------------- | ---------------------------------------------------------------- |
-| Preparing your computer (macOS, Linux, Windows) | [docs/guides/setup.md](docs/guides/setup.md)                     |
-| How the project is built and organised          | [docs/architecture.md](docs/architecture.md)                     |
-| How work flows, from issue to release           | [docs/guides/workflow.md](docs/guides/workflow.md)               |
-| How we plan: sprints, board, estimates          | [docs/guides/scrum.md](docs/guides/scrum.md)                     |
-| Why things are the way they are                 | [docs/decisions/](docs/decisions/)                               |
-| Working with the database                       | [docs/guides/database.md](docs/guides/database.md)               |
-| Writing and running tests                       | [docs/guides/testing.md](docs/guides/testing.md)                 |
-| Adding or updating dependencies                 | [docs/guides/dependencies.md](docs/guides/dependencies.md)       |
-| Something does not work                         | [docs/guides/troubleshooting.md](docs/guides/troubleshooting.md) |
-| Configuring the GitHub repository               | [docs/guides/github-setup.md](docs/guides/github-setup.md)       |
-| Reporting or handling a vulnerability           | [SECURITY.md](SECURITY.md)                                       |
+| Need                                            | Read                                                                |
+| ----------------------------------------------- | ------------------------------------------------------------------- |
+| Preparing your computer (macOS, Linux, Windows) | [docs/guides/setup.md](../docs/guides/setup.md)                     |
+| How the project is built and organised          | [docs/architecture.md](../docs/architecture.md)                     |
+| How work flows, from issue to release           | [docs/guides/workflow.md](../docs/guides/workflow.md)               |
+| How we plan: sprints, board, estimates          | [docs/guides/scrum.md](../docs/guides/scrum.md)                     |
+| Why things are the way they are                 | [docs/decisions/](../docs/decisions/)                               |
+| Working with the database                       | [docs/guides/database.md](../docs/guides/database.md)               |
+| Writing and running tests                       | [docs/guides/testing.md](../docs/guides/testing.md)                 |
+| Adding or updating dependencies                 | [docs/guides/dependencies.md](../docs/guides/dependencies.md)       |
+| Something does not work                         | [docs/guides/troubleshooting.md](../docs/guides/troubleshooting.md) |
+| Configuring the GitHub repository               | [docs/guides/github-setup.md](../docs/guides/github-setup.md)       |
+| Reporting or handling a vulnerability           | [SECURITY.md](SECURITY.md)                                          |
 
 ## Branches
 
@@ -70,7 +70,7 @@ git switch develop && git pull
 git switch -c feature/<issue>-short-description
 ```
 
-The reasoning is in [docs/decisions/0003-branching-and-commits.md](docs/decisions/0003-branching-and-commits.md).
+The reasoning is in [docs/decisions/0003-branching-and-commits.md](../docs/decisions/0003-branching-and-commits.md).
 
 ## Commits
 
@@ -83,7 +83,7 @@ build(deps): update fastify to 5.3
 docs(guides): explain how to seed the database
 ```
 
-The format is `type(scope): description`: an allowed type, a scope from the list, a description in the imperative starting with a lowercase letter, at most 72 characters and no final period. Because PRs are squash-merged, **the PR title becomes the commit** in `develop`, so the `PR title` check applies the same rules to it. The types, scopes, rules and good and bad examples are in [Commit messages](docs/guides/workflow.md#commit-messages).
+The format is `type(scope): description`: an allowed type, a scope from the list, a description in the imperative starting with a lowercase letter, at most 72 characters and no final period. Because PRs are squash-merged, **the PR title becomes the commit** in `develop`, so the `PR title` check applies the same rules to it. The types, scopes, rules and good and bad examples are in [Commit messages](../docs/guides/workflow.md#commit-messages).
 
 Turn on the optional commit hook once per clone, so every commit is checked as you write it: `pnpm hooks:install`.
 
@@ -92,7 +92,7 @@ Keep commits small and focused. The subject evaluates that **every team member**
 ## Pull requests
 
 1. Push your branch and open a PR into `develop`, filling in the template.
-2. Every check must be green: PR title, branch name, commit authors, format and lint, API build, web build, tests, Docker build, dependency review and CodeQL (the full list is in the [GitHub setup guide](docs/guides/github-setup.md#ruleset-develop)).
+2. Every check must be green: PR title, branch name, commit authors, format and lint, API build, web build, tests, Docker build, dependency review and CodeQL (the full list is in the [GitHub setup guide](../docs/guides/github-setup.md#ruleset-develop)).
 3. At least one teammate approves (required from the first development sprint).
 4. Squash and merge (the commit is the PR title), then delete the branch.
 
@@ -104,22 +104,22 @@ You may use AI assistants, but **you** are the author of everything you commit a
 - No AI `Co-authored-by` trailers or "Generated with…" lines in commits or PRs. The `Commit authors` CI check rejects them.
 - Write down what you used AI for in the "Use of AI" section of the README.
 
-The reasoning is in [docs/decisions/0004-commit-authorship.md](docs/decisions/0004-commit-authorship.md).
+The reasoning is in [docs/decisions/0004-commit-authorship.md](../docs/decisions/0004-commit-authorship.md).
 
 ## Where code goes
 
-The full layout and its rules are in [docs/architecture.md](docs/architecture.md). In short:
+The full layout and its rules are in [docs/architecture.md](../docs/architecture.md). In short:
 
-| You are adding…                            | Put it in                                                                                   |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| An API endpoint                            | `apps/api/src/modules/<domain>/<domain>.routes.ts`                                          |
-| Business logic or database queries         | `apps/api/src/modules/<domain>/<domain>.service.ts`                                         |
-| A database table                           | `apps/api/prisma/schema.prisma` + a migration                                               |
-| A request/response shape or validation     | `packages/shared/src/<domain>.ts`                                                           |
-| A screen                                   | `apps/web/src/pages/`                                                                       |
-| Components, hooks or API calls of a domain | `apps/web/src/features/<domain>/`                                                           |
-| A generic UI component (Button, Modal…)    | `apps/web/src/components/ui/`                                                               |
-| A test                                     | Next to the file it tests, as `*.test.ts` (see the [testing guide](docs/guides/testing.md)) |
+| You are adding…                            | Put it in                                                                                      |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| An API endpoint                            | `apps/api/src/modules/<domain>/<domain>.routes.ts`                                             |
+| Business logic or database queries         | `apps/api/src/modules/<domain>/<domain>.service.ts`                                            |
+| A database table                           | `apps/api/prisma/schema.prisma` + a migration                                                  |
+| A request/response shape or validation     | `packages/shared/src/<domain>.ts`                                                              |
+| A screen                                   | `apps/web/src/pages/`                                                                          |
+| Components, hooks or API calls of a domain | `apps/web/src/features/<domain>/`                                                              |
+| A generic UI component (Button, Modal…)    | `apps/web/src/components/ui/`                                                                  |
+| A test                                     | Next to the file it tests, as `*.test.ts` (see the [testing guide](../docs/guides/testing.md)) |
 
 Create a folder when you add its first file, not before.
 

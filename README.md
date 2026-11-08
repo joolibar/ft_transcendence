@@ -59,7 +59,7 @@ All configuration lives in `.env` (ignored by Git). `.env.example` lists every v
 
 ### Local development
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for hot-reload development, branch and commit conventions, and the project structure. The architecture is described in [docs/architecture.md](docs/architecture.md).
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for hot-reload development, branch and commit conventions, and the project structure. The architecture is described in [docs/architecture.md](docs/architecture.md).
 
 ## Team Information
 

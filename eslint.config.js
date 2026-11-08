@@ -32,7 +32,7 @@ export default tseslint.config(
       'packages/shared/**/*.ts',
       '*.js',
       'apps/*/*.ts',
-      '.github/**/*.cjs',
+      '.github/**/*.{js,cjs}',
     ],
     languageOptions: { globals: globals.node },
   },
