@@ -85,6 +85,7 @@ infra/nginx/              HTTPS reverse proxy and the image that serves the fron
 docs/                     This documentation
 .github/                  CI workflows, templates, CONTRIBUTING, SECURITY and commit rules
 .githooks/                The optional commit-msg hook (`pnpm hooks:install`)
+.vscode/                  Shared editor settings and recommended extensions
 ```
 
 The root folder holds only what tools look for there: the pnpm workspace (`package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`), the configs that apply to every folder (ESLint, Prettier, Vitest, `tsconfig.base.json`, `.editorconfig`), Docker Compose with `.env.example` and the `Makefile`, plus README and LICENSE. Generated folders (`node_modules/`, `dist/`, `coverage/`, `backend/src/generated/`) are ignored by Git.

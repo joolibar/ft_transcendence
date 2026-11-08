@@ -78,6 +78,12 @@ Docker on Windows runs Linux containers inside **WSL2**, a real Linux system bui
 
 Do not run the project from PowerShell or CMD: `make` does not exist there, and Git for Windows would use different settings for line endings and file permissions.
 
+## Editor
+
+The repository shares VS Code settings in `.vscode/`. When you open it, VS Code offers to install the recommended extensions (ESLint, Prettier, Prisma, Tailwind CSS, EditorConfig and Vitest): accept. From then on, saving a file formats it with Prettier and fixes what ESLint can fix, so the `Format and lint` check passes.
+
+Personal settings stay out of Git: only `extensions.json` and `settings.json` are committed. Other editors (WebStorm, Vim…) read `.editorconfig` and can run Prettier and ESLint with the project's own config.
+
 ## Check that everything works
 
 From the repository, on any system:
