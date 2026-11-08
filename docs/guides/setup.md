@@ -1,6 +1,6 @@
 # Setup guide
 
-How to prepare a computer to work on Miga, on macOS, Linux (including the 42 campus computers) and Windows. The short version is in [CONTRIBUTING](../../CONTRIBUTING.md#setup); this guide explains each system and its usual problems.
+How to prepare a computer to work on Miga, on macOS, Linux (including the 42 campus computers) and Windows. The short version is in [CONTRIBUTING](../../.github/CONTRIBUTING.md#setup); this guide explains each system and its usual problems.
 
 ## Why it works the same everywhere
 
@@ -31,7 +31,7 @@ Only Docker is needed to run the app the way it is evaluated. Node and pnpm are 
    nvm install                          # reads .nvmrc
    npm install --global pnpm@12.9.1
    ```
-3. Follow the rest of [CONTRIBUTING](../../CONTRIBUTING.md#setup).
+3. Follow the rest of [CONTRIBUTING](../../.github/CONTRIBUTING.md#setup).
 
 `make` comes with the Xcode command line tools; if it is missing, run `xcode-select --install`.
 

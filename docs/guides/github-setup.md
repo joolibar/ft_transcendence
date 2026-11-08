@@ -92,7 +92,7 @@ Target: branch `main`. Same as `develop`, except:
 | Dependabot security updates                                | ❌ off (see section 4)                                                                                          |
 | Secret scanning                                            | ✅ on (free on public repositories)                                                                             |
 | Push protection                                            | ✅ on: a push containing a secret is rejected                                                                   |
-| Private vulnerability reporting                            | ✅ on: the channel described in [`SECURITY.md`](../../SECURITY.md)                                              |
+| Private vulnerability reporting                            | ✅ on: the channel described in [`SECURITY.md`](../../.github/SECURITY.md)                                      |
 | Code scanning (CodeQL)                                     | ✅ on, **Default setup** (JavaScript/TypeScript and GitHub Actions)                                             |
 | Secret scanning: non-provider patterns and validity checks | Not available on our plan (GitHub Secret Protection); the standard secret scanning above covers known providers |
 

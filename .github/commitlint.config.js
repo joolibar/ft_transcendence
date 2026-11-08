@@ -1,10 +1,10 @@
 // Checks commit messages locally with the same rules as the PR checks.
-// The types and scopes live in .github/conventions.json; see docs/guides/workflow.md#commit-messages.
+// The types and scopes live in conventions.json, next to this file; see docs/guides/workflow.md#commit-messages.
 // Turn the hook on once per clone with `pnpm hooks:install`.
 import { readFileSync } from 'node:fs';
 
 const conventions = JSON.parse(
-  readFileSync(new URL('./.github/conventions.json', import.meta.url), 'utf8'),
+  readFileSync(new URL('./conventions.json', import.meta.url), 'utf8'),
 );
 
 export default {
