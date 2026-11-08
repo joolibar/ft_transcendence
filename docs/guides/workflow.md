@@ -20,6 +20,7 @@ How a piece of work travels from an idea to the version that is evaluated. The r
 
 Every piece of work starts as a GitHub issue, created with one of the templates (feature, bug or subject module task; the epic template is for the PO). The issue says **what** and **why**, and has acceptance criteria a reviewer can check. It belongs to an epic and a phase; how issues are planned into sprints is in the [Scrum guide](scrum.md).
 
+- First time? Set up your computer with [CONTRIBUTING](../../.github/CONTRIBUTING.md#setup) and turn on the [commit hook](#check-your-messages-before-committing).
 - Take it from **Ready** in the current sprint, assign it to yourself and move it to **In progress** on the project board.
 - One issue = one branch = one pull request. If the work turns out to be bigger, split the issue.
 - Small fixes found along the way that are unrelated to your issue get their own issue, not a sneaky commit in your branch.
@@ -39,7 +40,7 @@ Pick the prefix by **what the change is**, not by who makes it. Each prefix take
 | Prefix     | Use it for                                                          | Commit types it takes                                                 | Examples                                                   |
 | ---------- | ------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------- |
 | `feature/` | Something a user or developer can now do that they could not before | `feat`, `perf`                                                        | `feature/18-email-sign-up`, `feature/99-live-voting`       |
-| `fix/`     | Something that should work and does not                             | `fix`, `revert`                                                       | `fix/170-review-form-validation`, `fix/172-chat-reconnect` |
+| `fix/`     | Something that should work and does not                             | `fix`, `revert`                                                       | `fix/301-review-form-validation`, `fix/302-chat-reconnect` |
 | `chore/`   | Tooling, CI, dependencies, refactors, tests with no product change  | `chore`, `refactor`, `test`, `style`, `build`, `ci`, `perf`, `revert` | `chore/62-postgis`, `chore/61-accessibility-checks`        |
 | `docs/`    | Only documentation                                                  | `docs`                                                                | `docs/23-readme-team`                                      |
 
@@ -92,7 +93,28 @@ the version in develop
 3. `git add` the files and `git commit` to finish the merge.
 4. If you do not understand the other change, ask its author before choosing.
 
-## 5. Open the pull request
+## 5. Run the checks, then open the pull request
+
+Before pushing, run locally what CI will run. It takes a minute and saves a red check and a second round of review. The tests need the database (`make db`).
+
+```bash
+pnpm format                          # fix the formatting
+pnpm lint && pnpm typecheck          # same rules as CI
+pnpm test:coverage                   # every test, and the 80 % coverage minimum
+pnpm build                           # backend and frontend compile
+```
+
+| Local command        | CI check it matches                                         |
+| -------------------- | ----------------------------------------------------------- |
+| `pnpm format:check`  | `Format and lint`                                           |
+| `pnpm lint`          | `Format and lint`                                           |
+| `pnpm typecheck`     | `API typecheck and build`, `Web typecheck and build`        |
+| `pnpm build`         | `API typecheck and build`, `Web typecheck and build`        |
+| `pnpm test:coverage` | `Tests`                                                     |
+| `make clean && make` | `Docker images build` (only when you touch Docker or nginx) |
+| The commit hook      | `PR title` checks the same rules on the title               |
+
+The other checks (`Branch name`, `Commit authors`, `Dependency review`, `Convention scripts tests` and CodeQL) only run on GitHub. If one fails, [troubleshooting](troubleshooting.md#a-pr-check-fails) says what to do.
 
 ```bash
 git push -u origin feature/44-save-places
@@ -101,7 +123,7 @@ gh pr create --base develop
 
 - **Title:** a [commit message](#commit-messages) header, at most 72 characters, with a type that belongs to the branch prefix. It becomes the commit in `develop`.
 - **Description:** fill in the template: what changes, how to test it, and the checklist. Write `Closes #42` to close the issue automatically when the PR is merged.
-- **Labels:** the type (`feature`, `bug`, `chore`, `docs`) and the areas it touches (`area: web`, `area: api`, `area: infra`).
+- **Labels:** the type (`feature`, `bug`, `chore`, `docs`) and the areas it touches: `area: web` for `frontend/`, `area: api` for `backend/`, `area: infra` for Docker, nginx and CI.
 - Move the issue to **In review** on the board.
 - Open it as a **draft** if you want early feedback before it is finished.
 
@@ -165,6 +187,7 @@ There is no direct path into `main`. Fix it like any other bug, in a `fix/<issue
 | Start new work           | Issue → `git switch develop && git pull && git switch -c <prefix>/<issue>-<name>` |
 | Save progress            | `git commit -m "<type>(<scope>): <description>"`                                  |
 | Get the latest `develop` | `git fetch origin && git merge origin/develop`                                    |
+| Check before pushing     | `pnpm format && pnpm lint && pnpm typecheck && pnpm test:coverage && pnpm build`  |
 | Ask for review           | `git push` → `gh pr create --base develop`                                        |
 | Review someone's PR      | `gh pr checkout <number>`                                                         |
 | Finish after merge       | `git switch develop && git pull && git branch -D <branch>`                        |
@@ -215,9 +238,11 @@ Closes #44
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Product        | `auth`, `users`, `places`, `collections`, `reviews`, `friends`, `messages`, `plans`, `notifications`, `recommendations`, `llm`, `search`, `uploads`, `game`, `diary`, `feed`, `moderation`, `gdpr`, `public-api`, `analytics` |
 | Cross-cutting  | `ui`, `i18n`, `a11y`, `realtime`, `security`                                                                                                                                                                                  |
-| Apps and data  | `web`, `api`, `shared`, `db`                                                                                                                                                                                                  |
+| Code and data  | `web`, `api`, `shared`, `db`                                                                                                                                                                                                  |
 | Infrastructure | `infra`, `ci`, `deps`, `release`                                                                                                                                                                                              |
 | Documentation  | `readme`, `guides`, `adr`, `scrum`, `github`                                                                                                                                                                                  |
+
+The code scopes follow the folders: `web` is `frontend/`, `api` is `backend/`, `shared` is `shared/` and `db` is `backend/prisma/` ([ADR 0013](../decisions/0013-code-folders.md) keeps the short names).
 
 A new area needs a new scope: add it to `.github/conventions.json` and to this table in its own small PR.
 

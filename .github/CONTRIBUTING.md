@@ -57,7 +57,7 @@ Use **pnpm only**. Do not run `npm install` or `yarn`: mixing package managers b
 | `main`      | Stable, evaluable version. Protected: only updated by a PR from `develop`. |
 | `develop`   | Integration branch and default branch. Protected: only updated by PRs.     |
 | `feature/*` | New functionality, e.g. `feature/18-email-sign-up`                         |
-| `fix/*`     | Bug fixes, e.g. `fix/170-review-form-validation`                           |
+| `fix/*`     | Bug fixes, e.g. `fix/301-review-form-validation`                           |
 | `chore/*`   | Tooling, config, dependencies, e.g. `chore/62-postgis`                     |
 | `docs/*`    | Documentation only, e.g. `docs/23-readme-team`                             |
 
@@ -92,7 +92,7 @@ Keep commits small and focused. The subject evaluates that **every team member**
 ## Pull requests
 
 1. Push your branch and open a PR into `develop`, filling in the template.
-2. Every check must be green: PR title, branch name, commit authors, format and lint, API build, web build, tests, Docker build, dependency review and CodeQL (the full list is in the [GitHub setup guide](../docs/guides/github-setup.md#ruleset-develop)).
+2. Run the checks locally first ([workflow guide, step 5](../docs/guides/workflow.md#5-run-the-checks-then-open-the-pull-request)). Every check must be green: PR title, branch name, commit authors, convention scripts tests, format and lint, API and web typecheck and build, tests, Docker images build, dependency review and CodeQL (the full list is in the [GitHub setup guide](../docs/guides/github-setup.md#ruleset-develop)).
 3. At least one teammate approves (required from the first development sprint).
 4. Squash and merge (the commit is the PR title), then delete the branch.
 
