@@ -1,5 +1,7 @@
 # Documentation
 
+New to the project? Start with [CONTRIBUTING](../.github/CONTRIBUTING.md). Vulnerabilities are reported as [SECURITY](../.github/SECURITY.md) explains.
+
 | Path                                                     | What it contains                                                                |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | [`architecture.md`](architecture.md)                     | How the pieces fit together: services, requests, folders and conventions.       |

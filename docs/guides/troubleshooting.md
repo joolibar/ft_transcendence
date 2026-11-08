@@ -35,6 +35,21 @@ Containers read `.env` when they are created. Run `make re`.
 
 The API tests use a real database. Start it with `make db`, and check that `.env` exists and its `DATABASE_URL` points to `localhost:5432`.
 
+## Old `apps/` or `packages/` folders after pulling
+
+The code moved to `backend/`, `frontend/` and `shared/` ([ADR 0013](../decisions/0013-code-folders.md)). Git removes the files it tracked, but leaves the folders it ignores (`node_modules`, `dist`) behind. Delete the old folders and install again:
+
+```bash
+rm -rf apps packages
+pnpm install
+```
+
+The same fixes "Cannot find module @miga/api" or "@miga/web": the workspaces are now `@miga/backend` and `@miga/frontend`.
+
+## The commit hook rejects my message
+
+The message does not follow the [commit conventions](workflow.md#commit-messages); the hook says which rule failed (type, scope, length, capital letter, final period). Fix the message and commit again. If it says it cannot find its config, run `pnpm install`: the hook uses `.github/commitlint.config.js` and the commitlint packages.
+
 ## `pnpm install` fails with "Ignored build scripts"
 
 A new dependency wants to run an install script. See [build scripts](dependencies.md#build-scripts).
@@ -105,11 +120,16 @@ GitHub's push protection found a password, key or token in one of your commits. 
 
 ## A PR check fails
 
-| Check               | What to do                                                                                                                                                                                   |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Format and lint`   | Run `pnpm format` and `pnpm lint` locally, fix and push                                                                                                                                      |
-| `PR title`          | Read which rule failed (type, scope, branch prefix, length), edit the title; the check re-runs automatically                                                                                 |
-| `Branch name`       | Create a correctly named branch from yours and open a new PR                                                                                                                                 |
-| `Commit authors`    | Fix `git config user.email`, then reword the commits (`git commit --amend --reset-author` for the last one)                                                                                  |
-| `Dependency review` | A dependency you added has a known vulnerability: the check's summary names it. Use a fixed version or another package ([dependencies guide](dependencies.md#security-alerts-and-overrides)) |
-| Others              | Open the check's log on GitHub; the failing step shows the error                                                                                                                             |
+| Check                                                 | What to do                                                                                                                                                                                   |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Format and lint`                                     | Run `pnpm format` and `pnpm lint` locally, fix and push                                                                                                                                      |
+| `API typecheck and build` / `Web typecheck and build` | Run `pnpm typecheck` and `pnpm build`; the log names the file and line                                                                                                                       |
+| `Tests`                                               | Run `make db` and `pnpm test:coverage`. A failing test shows its name and the difference; "coverage threshold not met" means the new code needs tests ([coverage](testing.md#coverage))      |
+| `Docker images build`                                 | Run `make clean && make`; usually a path in a `Dockerfile` or a file missing from the image                                                                                                  |
+| `Convention scripts tests`                            | The tests of `.github/scripts/` fail: run `node --test '.github/scripts/*.test.cjs'` and fix the script or its test                                                                          |
+| CodeQL                                                | Open the alert in the PR (Security tab): it explains the risk and the line. Fix the code; never dismiss an alert without a comment saying why                                                |
+| `PR title`                                            | Read which rule failed (type, scope, branch prefix, length), edit the title; the check re-runs automatically                                                                                 |
+| `Branch name`                                         | Create a correctly named branch from yours and open a new PR                                                                                                                                 |
+| `Commit authors`                                      | Fix `git config user.email`, then reword the commits (`git commit --amend --reset-author` for the last one)                                                                                  |
+| `Dependency review`                                   | A dependency you added has a known vulnerability: the check's summary names it. Use a fixed version or another package ([dependencies guide](dependencies.md#security-alerts-and-overrides)) |
+| Others                                                | Open the check's log on GitHub; the failing step shows the error                                                                                                                             |

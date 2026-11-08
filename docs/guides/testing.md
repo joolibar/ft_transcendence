@@ -13,7 +13,7 @@ Every change that adds or modifies behaviour comes with tests. CI runs all of th
 
 ## Running tests
 
-The API tests need PostgreSQL. Start it once (it stays running in the background):
+The backend tests need PostgreSQL. Start it once (it stays running in the background):
 
 ```bash
 make db
@@ -26,6 +26,8 @@ Then, from the repository root:
 | `pnpm test`          | Run every test once                                                        |
 | `pnpm test:watch`    | Re-run affected tests on every file save                                   |
 | `pnpm test:coverage` | Run every test and print a coverage report (also in `coverage/index.html`) |
+
+CI runs `pnpm test:coverage` in the `Tests` check, so run that one before pushing. `coverage/` is generated and ignored by Git.
 
 To run a single workspace: `pnpm --filter @miga/backend test` (or `@miga/frontend`, `@miga/shared`).
 
