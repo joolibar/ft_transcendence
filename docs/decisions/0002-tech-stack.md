@@ -15,7 +15,7 @@ The subject requires a frontend, a backend and a database, HTTPS for every conne
 | Frontend   | React, Vite, Tailwind CSS           |
 | Backend    | Fastify on Node.js 24               |
 | Database   | PostgreSQL, accessed through Prisma |
-| Validation | Zod schemas in `packages/shared`    |
+| Validation | Zod schemas in `shared`             |
 | Real-time  | Socket.io                           |
 | Web server | nginx (HTTPS, static files, proxy)  |
 | Deployment | Docker Compose                      |

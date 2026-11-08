@@ -4,13 +4,13 @@ FROM node:24.22.2-trixie-slim AS build
 RUN npm install --global pnpm@12.9.1
 WORKDIR /app
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json tsconfig.base.json ./
-COPY packages/shared/package.json packages/shared/
-COPY apps/api/package.json apps/api/
-RUN pnpm install --frozen-lockfile --filter @miga/api...
-COPY packages/shared packages/shared
-COPY apps/api apps/api
-RUN pnpm --filter @miga/api... build \
- && pnpm --filter @miga/api deploy --prod /out
+COPY shared/package.json shared/
+COPY backend/package.json backend/
+RUN pnpm install --frozen-lockfile --filter @miga/backend...
+COPY shared shared
+COPY backend backend
+RUN pnpm --filter @miga/backend... build \
+ && pnpm --filter @miga/backend deploy --prod /out
 
 FROM node:24.22.2-trixie-slim AS runtime
 ENV NODE_ENV=production

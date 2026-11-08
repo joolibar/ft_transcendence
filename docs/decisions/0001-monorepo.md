@@ -1,6 +1,6 @@
 # 0001 — One repository for the whole project
 
-- **Status:** accepted
+- **Status:** accepted; the folder names are superseded by [ADR 0013](0013-code-folders.md)
 - **Date:** 2026-11-02
 
 ## Context

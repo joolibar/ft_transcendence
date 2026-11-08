@@ -34,7 +34,7 @@ In local development, `make db` starts only the database and publishes it on `lo
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HTTPS only, TLS 1.2+                | nginx is the only published port ([`nginx.conf`](../infra/nginx/nginx.conf))                                                                                                           |
 | Security headers on the web app     | [`security-headers.conf`](../infra/nginx/security-headers.conf): HSTS, no sniffing, no framing, referrer and permissions policies, Content-Security-Policy, Cross-Origin-Opener-Policy |
-| Security headers on the API         | `@fastify/helmet` in [`app.ts`](../apps/api/src/app.ts)                                                                                                                                |
+| Security headers on the API         | `@fastify/helmet` in [`app.ts`](../backend/src/app.ts)                                                                                                                                 |
 | Database not reachable from outside | `db` publishes no port in `docker-compose.yml`                                                                                                                                         |
 | Real client IP behind the proxy     | Fastify `trustProxy`, using nginx's `X-Forwarded-*` headers                                                                                                                            |
 | Secrets out of Git                  | `.env` is ignored; `.env.example` documents every variable                                                                                                                             |
@@ -55,45 +55,51 @@ A blocked resource shows up in the browser console as "Refused to load … becau
 ## Repository layout
 
 ```
-apps/
-  api/                    Backend
-    prisma/               Database schema, migrations, seed data
-    src/
-      modules/<domain>/   One folder per business domain
-      plugins/            Cross-cutting pieces: database, auth, sockets
-      config/             Environment variables, validated at startup
-      lib/                Pure helpers with no business logic
-      generated/          Prisma client from `pnpm generate` (ignored by Git)
-      app.ts              Builds the Fastify app and registers modules
-      server.ts           Starts the server
-  web/                    Frontend
-    src/
-      app/                Root component, router, global providers
-      pages/              One component per route; only composes pieces
-      features/<domain>/  Components, hooks and API calls of one domain
-      components/ui/      Design system: generic, reusable, no business logic
-      components/layout/  Header, footer, navigation
-      lib/                HTTP client and generic helpers
-      i18n/               Translations (es, ca, en)
-      styles/             Global CSS and Tailwind setup
-      test/               Test setup shared by every web test
-packages/
-  shared/src/<domain>.ts  Zod schemas and types used by web and api
-infra/nginx/              HTTPS reverse proxy and the web image
+backend/                  API server (Fastify + Prisma)
+  prisma/                 Database schema, migrations, seed data
+  src/
+    modules/<domain>/     One folder per business domain
+    plugins/              Cross-cutting pieces: database, auth, sockets
+    config/               Environment variables, validated at startup
+    errors/               Error classes and the shape of error responses
+    lib/                  Pure helpers with no business logic
+    generated/            Prisma client from `pnpm generate` (ignored by Git)
+    app.ts                Builds the Fastify app and registers modules
+    server.ts             Starts the server
+frontend/                 Web app (React + Vite)
+  public/                 Files served as they are: favicon, icons
+  src/
+    app/                  Root component, router, global providers
+    pages/                One component per route; only composes pieces
+    features/<domain>/    Components, hooks and API calls of one domain
+    components/ui/        Design system: generic, reusable, no business logic
+    components/layout/    Header, footer, navigation
+    hooks/                Generic hooks used by several features
+    lib/                  HTTP client and generic helpers
+    i18n/                 Translations (es, ca, en)
+    styles/               Global CSS and Tailwind setup
+    test/                 Test setup shared by every frontend test
+shared/
+  src/<domain>.ts         Zod schemas and types used by the backend and the frontend
+infra/nginx/              HTTPS reverse proxy and the image that serves the frontend
 docs/                     This documentation
+.github/                  CI workflows, templates, CONTRIBUTING, SECURITY and commit rules
+.githooks/                The optional commit-msg hook (`pnpm hooks:install`)
 ```
 
-Folders are created when the first file that needs them is written, not in advance.
+The root folder holds only what tools look for there: the pnpm workspace (`package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`), the configs that apply to every folder (ESLint, Prettier, Vitest, `tsconfig.base.json`, `.editorconfig`), Docker Compose with `.env.example` and the `Makefile`, plus README and LICENSE. Generated folders (`node_modules/`, `dist/`, `coverage/`, `backend/src/generated/`) are ignored by Git.
+
+Folders are created when the first file that needs them is written, not in advance. The three code folders are pnpm workspaces named `@miga/backend`, `@miga/frontend` and `@miga/shared` ([ADR 0013](decisions/0013-code-folders.md)).
 
 ## Rules
 
-1. **Organise by domain, the same way on both sides.** The `reviews` domain lives in `api/src/modules/reviews/`, `web/src/features/reviews/` and `shared/src/reviews.ts`.
+1. **Organise by domain, the same way on both sides.** The `reviews` domain lives in `backend/src/modules/reviews/`, `frontend/src/features/reviews/` and `shared/src/reviews.ts`.
 2. **Backend module = routes + service.** `<domain>.routes.ts` handles HTTP (URL, input validation, response). `<domain>.service.ts` holds business logic and database access. Routes never query the database directly.
 3. **Pages are thin, features are thick.** A page only arranges feature components; logic lives in the feature.
 4. **`components/ui` knows nothing about Miga's business.** If a component mentions places, reviews or users, it belongs in a feature.
 5. **Tests live next to the code they test** (`reviews.service.test.ts` beside `reviews.service.ts`). See the [testing guide](guides/testing.md).
 6. **Validate with the shared schema on both sides.** The web app validates forms with it for fast feedback; the API validates every request with it because the browser can be bypassed.
-7. **The linter checks types too.** ESLint uses typescript-eslint's `strictTypeChecked` rules, which read TypeScript's types to catch real bugs: promises nobody awaits or handles, `async` functions with nothing to await, values that may be `undefined`, unsafe `any`. Fix the code rather than disabling a rule; if a rule is really wrong for one line, disable it on that line only with a comment that says why. Fastify plugins with nothing to await use the callback form (`FastifyPluginCallback` and `done()`), as in [`health.routes.ts`](../apps/api/src/modules/health/health.routes.ts).
+7. **The linter checks types too.** ESLint uses typescript-eslint's `strictTypeChecked` rules, which read TypeScript's types to catch real bugs: promises nobody awaits or handles, `async` functions with nothing to await, values that may be `undefined`, unsafe `any`. Fix the code rather than disabling a rule; if a rule is really wrong for one line, disable it on that line only with a comment that says why. Fastify plugins with nothing to await use the callback form (`FastifyPluginCallback` and `done()`), as in [`health.routes.ts`](../backend/src/modules/health/health.routes.ts).
 
 ## Naming
 

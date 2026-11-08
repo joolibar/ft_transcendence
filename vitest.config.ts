@@ -4,10 +4,10 @@ import { defineConfig } from 'vitest/config';
 // Each project keeps its own vitest.config.ts with its environment.
 export default defineConfig({
   test: {
-    projects: ['packages/shared', 'apps/api', 'apps/web'],
+    projects: ['shared', 'backend', 'frontend'],
     coverage: {
       provider: 'v8',
-      include: ['packages/*/src/**', 'apps/*/src/**'],
+      include: ['{backend,frontend,shared}/src/**'],
       exclude: ['**/*.test.{ts,tsx}', '**/src/generated/**', '**/main.tsx', '**/server.ts'],
       reporter: ['text', 'html'],
       // The CI fails if coverage drops below these percentages. Raise them as

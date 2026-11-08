@@ -28,10 +28,10 @@ export default tseslint.config(
   },
   {
     files: [
-      'apps/api/**/*.ts',
-      'packages/shared/**/*.ts',
+      'backend/**/*.ts',
+      'shared/**/*.ts',
       '*.js',
-      'apps/*/*.ts',
+      '{backend,frontend,shared}/*.ts',
       '.github/**/*.{js,cjs}',
     ],
     languageOptions: { globals: globals.node },
@@ -43,7 +43,7 @@ export default tseslint.config(
     rules: { '@typescript-eslint/no-require-imports': 'off' },
   },
   {
-    files: ['apps/web/src/**/*.{ts,tsx}'],
+    files: ['frontend/src/**/*.{ts,tsx}'],
     languageOptions: { globals: globals.browser },
     plugins: {
       'react-hooks': reactHooks,
