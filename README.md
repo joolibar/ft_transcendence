@@ -61,6 +61,19 @@ All configuration lives in `.env` (ignored by Git). `.env.example` lists every v
 
 See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for hot-reload development, branch and commit conventions, and the project structure. The architecture is described in [docs/architecture.md](docs/architecture.md).
 
+### Project structure
+
+```
+backend/     API server: Fastify, Prisma, PostgreSQL
+frontend/    Web app: React, Vite, Tailwind CSS
+shared/      Zod schemas and types used by both
+infra/       nginx: HTTPS and reverse proxy
+docs/        Architecture, guides and decision records
+.github/     CI, templates, contributing and security policy
+```
+
+Where each kind of file goes, and why, is in [docs/architecture.md](docs/architecture.md#repository-layout).
+
 ## Team Information
 
 <!-- TODO: assign Project Manager and Tech Lead at the first sprint planning, and fill in responsibilities. -->

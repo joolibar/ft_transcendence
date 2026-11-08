@@ -83,8 +83,11 @@ shared/
   src/<domain>.ts         Zod schemas and types used by the backend and the frontend
 infra/nginx/              HTTPS reverse proxy and the image that serves the frontend
 docs/                     This documentation
-.github/                  CI workflows, templates, CONTRIBUTING and SECURITY
+.github/                  CI workflows, templates, CONTRIBUTING, SECURITY and commit rules
+.githooks/                The optional commit-msg hook (`pnpm hooks:install`)
 ```
+
+The root folder holds only what tools look for there: the pnpm workspace (`package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`), the configs that apply to every folder (ESLint, Prettier, Vitest, `tsconfig.base.json`, `.editorconfig`), Docker Compose with `.env.example` and the `Makefile`, plus README and LICENSE. Generated folders (`node_modules/`, `dist/`, `coverage/`, `backend/src/generated/`) are ignored by Git.
 
 Folders are created when the first file that needs them is written, not in advance. The three code folders are pnpm workspaces named `@miga/backend`, `@miga/frontend` and `@miga/shared` ([ADR 0013](decisions/0013-code-folders.md)).
 
