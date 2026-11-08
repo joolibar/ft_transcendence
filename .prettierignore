@@ -2,4 +2,4 @@ dist
 coverage
 node_modules
 pnpm-lock.yaml
-apps/api/src/generated
+backend/src/generated

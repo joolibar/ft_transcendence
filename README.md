@@ -103,7 +103,7 @@ The full reasoning is in [docs/decisions/0002-tech-stack.md](docs/decisions/0002
 
 ## Database Schema
 
-_To be completed as models are added to [`apps/api/prisma/schema.prisma`](apps/api/prisma/schema.prisma)._
+_To be completed as models are added to [`backend/prisma/schema.prisma`](backend/prisma/schema.prisma)._
 
 Main entities planned: User, DietaryRestriction, Place, Review, Collection, Friendship, Message, GroupPlan, Notification.
 

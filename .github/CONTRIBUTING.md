@@ -112,26 +112,28 @@ The full layout and its rules are in [docs/architecture.md](../docs/architecture
 
 | You are adding…                            | Put it in                                                                                      |
 | ------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| An API endpoint                            | `apps/api/src/modules/<domain>/<domain>.routes.ts`                                             |
-| Business logic or database queries         | `apps/api/src/modules/<domain>/<domain>.service.ts`                                            |
-| A database table                           | `apps/api/prisma/schema.prisma` + a migration                                                  |
-| A request/response shape or validation     | `packages/shared/src/<domain>.ts`                                                              |
-| A screen                                   | `apps/web/src/pages/`                                                                          |
-| Components, hooks or API calls of a domain | `apps/web/src/features/<domain>/`                                                              |
-| A generic UI component (Button, Modal…)    | `apps/web/src/components/ui/`                                                                  |
+| An API endpoint                            | `backend/src/modules/<domain>/<domain>.routes.ts`                                              |
+| Business logic or database queries         | `backend/src/modules/<domain>/<domain>.service.ts`                                             |
+| A database table                           | `backend/prisma/schema.prisma` + a migration                                                   |
+| A request/response shape or validation     | `shared/src/<domain>.ts`                                                                       |
+| A screen                                   | `frontend/src/pages/`                                                                          |
+| Components, hooks or API calls of a domain | `frontend/src/features/<domain>/`                                                              |
+| A generic UI component (Button, Modal…)    | `frontend/src/components/ui/`                                                                  |
+| A hook used by several features            | `frontend/src/hooks/`                                                                          |
+| An error type returned by the API          | `backend/src/errors/`                                                                          |
 | A test                                     | Next to the file it tests, as `*.test.ts` (see the [testing guide](../docs/guides/testing.md)) |
 
 Create a folder when you add its first file, not before.
 
 ## Useful commands
 
-| Command                              | What it does                                                                      |
-| ------------------------------------ | --------------------------------------------------------------------------------- |
-| `pnpm dev`                           | Run web and API with hot reload                                                   |
-| `pnpm test`                          | Run every test (needs the database)                                               |
-| `pnpm test:coverage`                 | Tests plus a coverage report                                                      |
-| `pnpm lint` / `pnpm typecheck`       | Same checks as CI                                                                 |
-| `pnpm generate`                      | Build `@miga/shared` and the Prisma client (lint, tests and the editor need them) |
-| `pnpm format`                        | Format all files with Prettier                                                    |
-| `pnpm --filter @miga/api db:migrate` | Create and apply a database migration                                             |
-| `pnpm --filter @miga/api db:studio`  | Browse the database in the browser                                                |
+| Command                                  | What it does                                                                      |
+| ---------------------------------------- | --------------------------------------------------------------------------------- |
+| `pnpm dev`                               | Run web and API with hot reload                                                   |
+| `pnpm test`                              | Run every test (needs the database)                                               |
+| `pnpm test:coverage`                     | Tests plus a coverage report                                                      |
+| `pnpm lint` / `pnpm typecheck`           | Same checks as CI                                                                 |
+| `pnpm generate`                          | Build `@miga/shared` and the Prisma client (lint, tests and the editor need them) |
+| `pnpm format`                            | Format all files with Prettier                                                    |
+| `pnpm --filter @miga/backend db:migrate` | Create and apply a database migration                                             |
+| `pnpm --filter @miga/backend db:studio`  | Browse the database in the browser                                                |

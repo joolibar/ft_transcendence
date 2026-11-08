@@ -4,7 +4,7 @@ node_modules/
 # Builds and reports
 dist/
 coverage/
-apps/api/src/generated/
+backend/src/generated/
 
 # Environment — never commit real secrets
 .env

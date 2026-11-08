@@ -52,7 +52,7 @@ Every change has an issue, even a small one: it is what the board, the history a
 Commit small, coherent steps, each with a message that follows the [commit conventions](#commit-messages):
 
 ```bash
-git add apps/api/src/modules/places
+git add backend/src/modules/places
 git commit -m "feat(places): add the save place endpoint"
 ```
 

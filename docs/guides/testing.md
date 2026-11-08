@@ -27,14 +27,14 @@ Then, from the repository root:
 | `pnpm test:watch`    | Re-run affected tests on every file save                                   |
 | `pnpm test:coverage` | Run every test and print a coverage report (also in `coverage/index.html`) |
 
-To run a single workspace: `pnpm --filter @miga/api test` (or `@miga/web`, `@miga/shared`).
+To run a single workspace: `pnpm --filter @miga/backend test` (or `@miga/frontend`, `@miga/shared`).
 
 ## Where tests go
 
 A test lives **next to the file it tests**, with the same name plus `.test`:
 
 ```
-apps/api/src/modules/reviews/
+backend/src/modules/reviews/
 ├── reviews.routes.ts
 ├── reviews.routes.test.ts
 ├── reviews.service.ts
@@ -45,11 +45,11 @@ Each workspace has its own `vitest.config.ts` (environment, setup). The root `vi
 
 ## What to test
 
-| Workspace         | Test                                                                                 | Example                                |
-| ----------------- | ------------------------------------------------------------------------------------ | -------------------------------------- |
-| `packages/shared` | Every schema: valid input passes, each kind of invalid input fails                   | `health.test.ts`                       |
-| `apps/api`        | Every route: success, validation errors, auth errors, not found. Services with logic | `health.routes.test.ts`, `env.test.ts` |
-| `apps/web`        | What the user sees and does: rendering, interactions, loading and error states       | `App.test.tsx`                         |
+| Workspace  | Test                                                                                 | Example                                |
+| ---------- | ------------------------------------------------------------------------------------ | -------------------------------------- |
+| `shared`   | Every schema: valid input passes, each kind of invalid input fails                   | `health.test.ts`                       |
+| `backend`  | Every route: success, validation errors, auth errors, not found. Services with logic | `health.routes.test.ts`, `env.test.ts` |
+| `frontend` | What the user sees and does: rendering, interactions, loading and error states       | `App.test.tsx`                         |
 
 For each feature, cover at least:
 
