@@ -92,7 +92,7 @@ Keep commits small and focused. The subject evaluates that **every team member**
 ## Pull requests
 
 1. Push your branch and open a PR into `develop`, filling in the template.
-2. Run the checks locally first ([workflow guide, step 5](../docs/guides/workflow.md#5-run-the-checks-then-open-the-pull-request)). Every check must be green: PR title, branch name, commit authors, convention scripts tests, format and lint, API and web typecheck and build, tests, Docker images build, dependency review and CodeQL (the full list is in the [GitHub setup guide](../docs/guides/github-setup.md#ruleset-develop)).
+2. Run the checks locally first ([workflow guide, step 5](../docs/guides/workflow.md#5-run-the-checks-then-open-the-pull-request)). Every check must be green: PR title, branch name, commit authors, convention scripts tests, format and lint, API and web typecheck and build, tests, stack smoke test, dependency review and CodeQL (the full list is in the [GitHub setup guide](../docs/guides/github-setup.md#ruleset-develop)).
 3. At least one teammate approves. GitHub does not let you approve your own PR, so ask for a review in the PR or in the team chat.
 4. Squash and merge (the commit is the PR title), then delete the branch.
 

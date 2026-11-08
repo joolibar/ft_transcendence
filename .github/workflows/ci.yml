@@ -87,10 +87,26 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:coverage
 
-  docker:
-    name: Docker images build
+  stack:
+    name: Stack smoke test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: cp .env.example .env
-      - run: docker compose build
+      # The command the evaluation runs: creates .env from .env.example, builds
+      # the images and starts db, api and web.
+      - run: make
+      # Waits until every service passes its Docker health check.
+      - run: docker compose up --detach --wait --wait-timeout 180
+      - name: Check the app over HTTPS
+        run: |
+          health=$(curl --fail --silent --show-error --insecure https://localhost:8443/api/health)
+          echo "$health"
+          echo "$health" | grep -q '"status":"ok"'
+          echo "$health" | grep -q '"database":"up"'
+          curl --fail --silent --show-error --insecure --output /dev/null https://localhost:8443/
+          curl --silent --show-error --insecure --head https://localhost:8443/ | grep -qi '^strict-transport-security:'
+      - name: Show the logs
+        if: failure()
+        run: docker compose logs
+      - run: make clean
+        if: always()

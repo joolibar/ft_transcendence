@@ -80,7 +80,7 @@ The `Tests` check fails if statements, branches, functions or lines drop below *
 The CI pipeline grows with the project. Every test file is picked up automatically, but new kinds of checks and new services need a few extra steps, done in the same PR that adds them:
 
 - **A new CI job is a required check.** Add it to both rulesets in [`.github/rulesets/`](../../.github/rulesets/), apply them on GitHub and add a row to the checks table in the [GitHub setup guide](github-setup.md#ruleset-develop). A check that is not required gets ignored the first time it fails.
-- **A new Docker service has a health check** in `docker-compose.yml`, and the stack smoke test checks it. Otherwise `make` can start a broken stack and CI would not notice.
+- **A new Docker service has a health check** in `docker-compose.yml`. The `Stack smoke test` check runs `make` and waits until every service is healthy, then calls `/api/health` over HTTPS. Otherwise `make` can start a broken stack and CI would not notice.
 - **Flaky tests are fixed or removed, never retried.** A test that sometimes fails is a bug in the test or in the code. Open a `fix/` issue straight away; until it is fixed, skip it with `it.skip` and a link to that issue, never with a retry.
 - **The coverage minimum only goes up** (see [Coverage](#coverage)).
 - **Every failing check is explained in [troubleshooting](troubleshooting.md)**, so anyone can fix it without asking.
