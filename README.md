@@ -70,6 +70,7 @@ shared/      Zod schemas and types used by both
 infra/       nginx: HTTPS and reverse proxy
 docs/        Architecture, guides and decision records
 .github/     CI, templates, contributing and security policy
+.vscode/     Shared editor settings
 ```
 
 Where each kind of file goes, and why, is in [docs/architecture.md](docs/architecture.md#repository-layout).
