@@ -104,15 +104,15 @@ pnpm test:coverage                   # every test, and the 80 % coverage minimum
 pnpm build                           # backend and frontend compile
 ```
 
-| Local command        | CI check it matches                                         |
-| -------------------- | ----------------------------------------------------------- |
-| `pnpm format:check`  | `Format and lint`                                           |
-| `pnpm lint`          | `Format and lint`                                           |
-| `pnpm typecheck`     | `API typecheck and build`, `Web typecheck and build`        |
-| `pnpm build`         | `API typecheck and build`, `Web typecheck and build`        |
-| `pnpm test:coverage` | `Tests`                                                     |
-| `make clean && make` | `Docker images build` (only when you touch Docker or nginx) |
-| The commit hook      | `PR title` checks the same rules on the title               |
+| Local command        | CI check it matches                                                |
+| -------------------- | ------------------------------------------------------------------ |
+| `pnpm format:check`  | `Format and lint`                                                  |
+| `pnpm lint`          | `Format and lint`                                                  |
+| `pnpm typecheck`     | `API typecheck and build`, `Web typecheck and build`               |
+| `pnpm build`         | `API typecheck and build`, `Web typecheck and build`               |
+| `pnpm test:coverage` | `Tests`                                                            |
+| `make clean && make` | `Stack smoke test` (only when you touch Docker, nginx or start-up) |
+| The commit hook      | `PR title` checks the same rules on the title                      |
 
 The other checks (`Branch name`, `Commit authors`, `Dependency review`, `Convention scripts tests` and CodeQL) only run on GitHub. If one fails, [troubleshooting](troubleshooting.md#a-pr-check-fails) says what to do.
 

@@ -52,7 +52,7 @@ Target: branch `develop`.
 | `API typecheck and build`  | CI             | The API compiles                                                  |
 | `Web typecheck and build`  | CI             | The web app compiles                                              |
 | `Tests`                    | CI             | Every test passes against PostgreSQL                              |
-| `Docker images build`      | CI             | `make` would be able to build the images                          |
+| `Stack smoke test`         | CI             | `make` starts every service and the app answers over HTTPS        |
 | `PR title`                 | PR conventions | Conventional Commits title                                        |
 | `Branch name`              | PR conventions | Allowed prefix and target branch                                  |
 | `Commit authors`           | PR conventions | Team members only, no AI attribution                              |
