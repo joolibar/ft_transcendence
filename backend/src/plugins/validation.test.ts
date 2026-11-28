@@ -5,15 +5,22 @@ import { z } from 'zod';
 import { registerValidation, type ZodTypeProvider } from './validation.js';
 
 let app: FastifyInstance;
+// What the last route received after validation. The routes answer `{ ok: true }`
+// and never send the client's own data back.
+let received: unknown;
 
 // A small app with one route per kind of input, so every place where the API
 // reads data from the client is covered without touching the database.
 beforeEach(async () => {
+  received = undefined;
   app = Fastify();
   registerValidation(app);
   const routes = app.withTypeProvider<ZodTypeProvider>();
 
-  routes.post('/sign-up', { schema: { body: signUpSchema } }, (request) => request.body);
+  routes.post('/sign-up', { schema: { body: signUpSchema } }, (request) => {
+    received = request.body;
+    return { ok: true };
+  });
   routes.get(
     '/places/:id',
     { schema: { params: z.object({ id: z.coerce.number().int().positive() }) } },
@@ -29,7 +36,10 @@ beforeEach(async () => {
         }),
       },
     },
-    (request) => request.query,
+    (request) => {
+      received = request.query;
+      return { ok: true };
+    },
   );
   app.get('/boom', () => {
     throw new Error('Something broke');
@@ -50,7 +60,7 @@ describe('request validation', () => {
     });
 
     expect(response.statusCode).toBe(200);
-    expect(response.json()).toEqual({
+    expect(received).toEqual({
       email: 'ana@example.com',
       password: 'a-long-password',
       displayName: 'Ana',
@@ -106,7 +116,8 @@ describe('request validation', () => {
   it('applies the defaults of a valid query', async () => {
     const response = await app.inject({ method: 'GET', url: '/search?q=pizza' });
 
-    expect(response.json()).toEqual({ q: 'pizza', limit: 20 });
+    expect(response.statusCode).toBe(200);
+    expect(received).toEqual({ q: 'pizza', limit: 20 });
   });
 
   it.each(['/search', '/search?q=a', '/search?q=pizza&limit=0', '/search?q=pizza&limit=51'])(
