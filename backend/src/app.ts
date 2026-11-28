@@ -4,6 +4,7 @@ import Fastify from 'fastify';
 import type { Env } from './config/env.js';
 import { healthRoutes } from './modules/health/health.routes.js';
 import { registerPrisma } from './plugins/prisma.js';
+import { registerValidation } from './plugins/validation.js';
 
 // Readable logs in development, JSON logs in production, silence in tests.
 export function loggerOptions(nodeEnv: Env['NODE_ENV']) {
@@ -25,6 +26,7 @@ export async function buildApp(env: Env) {
   await app.register(helmet);
   await app.register(sensible);
   registerPrisma(app, env.DATABASE_URL);
+  registerValidation(app);
 
   // Every feature lives in src/modules/<feature> and is registered under /api.
   await app.register(

@@ -125,9 +125,9 @@ Main entities planned: User, DietaryRestriction, Place, Review, Collection, Frie
 
 _To be completed as features are implemented, with the team member(s) responsible for each._
 
-| Feature | Description | Team member(s) |
-| ------- | ----------- | -------------- |
-|         |             |                |
+| Feature          | Description                                                                                                                                                                                                                                                              | Team member(s) |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------- |
+| Input validation | One Zod schema in `shared/` validates each form in the web app and each API request. The API answers invalid input with a consistent 400. Forms show the error next to the field with `aria-invalid` and `aria-describedby`. See [the guide](docs/guides/validation.md). | carlopezc      |
 
 ## Modules
 
